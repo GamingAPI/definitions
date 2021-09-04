@@ -13,12 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Generating HTML from my AsyncAPI document
-        uses: asyncapi/github-action-for-generator@v1
-        with:
-          template: '@asyncapi/dotnet-nats-template'
-          filepath: ./Rust_server.json
-          output: ./csharp-client
+      - run: npm install -g @asyncapi/generator
+      - run: ag ./Rust_server.json @asyncapi/dotnet-nats-template --output ./csharp-client
       - working-directory: ./csharp-client
         name: 'Push csharp client'
         run: |
