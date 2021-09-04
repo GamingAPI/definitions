@@ -1,0 +1,24 @@
+on: push
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GENERATOR_ACCESS }}
+          repository: 'EventstackTech/website'
+          path: './website'
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm install -g @asyncapi/generator
+      - run: ag ./Rust_server.json @asyncapi/html-template --output ./website/public/rustserver --force-write
+      - working-directory: ./website
+        name: 'Push HTML documentation'
+        run: |
+          git config user.name jonaslagoni
+          git config user.email jonas-lt@live.dk
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Generated new HTML documentation" && git push
