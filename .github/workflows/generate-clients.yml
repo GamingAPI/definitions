@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.GENERATOR_ACCESS }}
-          repository: 'https://github.com/EventstackTech/rust-public-client-csharp'
+          repository: 'EventstackTech/rust-public-client-csharp'
           path: './csharp-client'
       - name: Generating HTML from my AsyncAPI document
         uses: asyncapi/github-action-for-generator@v1
