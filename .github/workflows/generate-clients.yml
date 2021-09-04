@@ -1,0 +1,25 @@
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GENERATOR_ACCESS }}
+          repository: 'https://github.com/EventstackTech/rust-public-client-csharp'
+          path: './csharp-client'
+      - name: Generating HTML from my AsyncAPI document
+        uses: asyncapi/github-action-for-generator@v1
+        with:
+          template: '@asyncapi/dotnet-nats-template'
+          filepath: ./Rust_server.json
+          output: ./csharp-client
+      - working-directory: ./csharp-client
+        name: 'Push csharp client'
+        run: |
+          git config user.name jonaslagoni
+          git config user.email jonas-lt@live.dk
+          git add .
+          git commit -m "Generated new client"
+          git push
