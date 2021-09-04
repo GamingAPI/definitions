@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerBanned",
+	"payload": {
+	  "$ref": "../schemas/ServerPlayerBanned.json"
+	}
+  }

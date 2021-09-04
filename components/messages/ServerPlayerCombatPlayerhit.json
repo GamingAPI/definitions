@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerCombatPlayerhit",
+	"payload": {
+	  "$ref": "../schemas/ServerPlayerCombatPlayerhit.json"
+	}
+  }

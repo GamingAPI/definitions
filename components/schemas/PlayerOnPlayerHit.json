@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+	"$id": "PlayerOnPlayerHit",
+  "required": [
+    "hit_area_id",
+    "hit_distance",
+    "hit_damage",
+    "isKill",
+    "victim",
+    "attacker"
+  ],
+  "properties": {
+    "hit_area_id": {
+      "type": "integer"
+    },
+    "hit_distance": {
+      "type": "number"
+    },
+    "hit_damage": {
+      "type": "number"
+    },
+    "isKill": {
+      "type": "boolean"
+    },
+    "victim": {
+      "$ref": "./PlayerHit.json"
+    },
+    "attacker": {
+      "$ref": "./PlayerHit.json"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerReported",
+	"payload": {
+	  "$ref": "../schemas/ServerPlayerReported.json"
+	}
+  }

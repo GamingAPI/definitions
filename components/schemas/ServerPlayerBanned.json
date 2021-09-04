@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"$id": "ServerPlayerBanned",
+	"required": ["player_name", "steam_id", "timestamp"],
+	"properties": {
+		"player_name": {
+			"type": "string"
+		},
+		"steam_id": {
+			"type": "string",
+			"description": "The player's steamID64, must be 17 chars long.",
+			"pattern": "^[0-9]{17}$"
+		},
+		"reason": {
+			"type": "string"
+		},
+		"duration": {
+			"type": "string"
+		},
+		"timestamp": {
+			"type": "string",
+			"example": "2016-08-29T09:12:33.001Z"
+		}
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+	"$id": "ServerPlayerDisconnected",
+  "required": [
+    "player",
+    "Reason",
+    "disconnected_timestamp"
+  ],
+  "properties": {
+    "disconnected_timestamp": {
+      "type": "string",
+      
+      "example": "2016-08-29T09:12:33.001Z"
+    },
+    "player": {
+      "type": "object",
+      "$id": "ServerPlayerDisconnectedPlayer",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "reason": {
+      "type": "string"
+    }
+  }
+}

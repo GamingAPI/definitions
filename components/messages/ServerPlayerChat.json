@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerChat",
+	"payload": {
+	  "$ref": "../schemas/ChatMessage.json"
+	}
+}

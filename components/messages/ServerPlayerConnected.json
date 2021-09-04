@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerConnected",
+	"payload": {
+	  "$ref": "../schemas/ServerPlayerConnected.json"
+	}
+  }

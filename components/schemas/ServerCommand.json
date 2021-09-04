@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"$id": "ServerCommand",
+	"required": ["timestamp"],
+	"properties": {
+		"command": {
+			"type": "string"
+		},
+		"arguments": {
+			"type": "string"
+		},
+		"steam_id": {
+			"type": "string",
+			"description": "The player's steamID64 which are running the command, must be 17 chars long.",
+			"pattern": "^[0-9]{17}$"
+		},
+		"timestamp": {
+			"type": "string",
+			"example": "2016-08-29T09:12:33.001Z"
+		}
+	}
+}

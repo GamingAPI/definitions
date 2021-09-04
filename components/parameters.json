@@ -1,0 +1,20 @@
+{
+  "server_id": {
+    "description": "The ID of the server",
+    "schema": {
+      "type": "string"
+    }
+  },
+  "steam_id": {
+    "description": "The steam ID of a player",
+    "schema": {
+      "type": "string"
+    }
+  },
+  "item_id": {
+    "description": "The ID of an item",
+    "schema": {
+      "type": "string"
+    }
+  }
+}

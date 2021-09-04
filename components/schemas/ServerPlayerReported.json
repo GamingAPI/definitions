@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"$id": "ServerPlayerReported",
+	"required": ["reporter_steam_id", "reported_target_steam_id", "timestamp"],
+	"properties": {
+		"reporter_steam_id": {
+			"type": "string",
+			"description": "The player's steamID64 which reported the player, must be 17 chars long.",
+			"pattern": "^[0-9]{17}$"
+		},
+		"reported_target_steam_id": {
+			"type": "string",
+			"description": "The player's steamID64 which are reported, must be 17 chars long.",
+			"pattern": "^[0-9]{17}$"
+		},
+		"subject": {
+			"type": "string"
+		},
+		"message": {
+			"type": "string"
+		},
+		"reportedType": {
+			"type": "string"
+		},
+		"timestamp": {
+			"type": "string",
+			"example": "2016-08-29T09:12:33.001Z"
+		}
+	}
+}

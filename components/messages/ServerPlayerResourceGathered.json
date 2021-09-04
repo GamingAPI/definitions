@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerResourceGathered",
+	"payload": {
+	  "$ref": "../schemas/ServerPlayerResourceGathered.json"
+	}
+  }
