@@ -18,7 +18,7 @@
   },
   "defaultContentType": "json",
   "channels": {
-    "rust/servers/{server_id}/events/wiped": {
+    "v0/rust/servers/{server_id}/events/wiped": {
       "description": "Channel for the API to process when a server has just wiped",
       "parameters": {
         "server_id": {
@@ -32,7 +32,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/events/started": {
+    "v0/rust/servers/{server_id}/events/started": {
       "description": "Channel for the API to process for when a server has started",
       "parameters": {
         "server_id": {
@@ -46,7 +46,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/events/stopping": {
+    "v0/rust/servers/{server_id}/events/stopping": {
       "description": "Channel for the API to process for when a server is about to stop (cant send information if already stopped)",
       "parameters": {
         "server_id": {
@@ -60,7 +60,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/connected": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/connected": {
       "description": "Channel for the API to process for when a player connects to a server",
       "parameters": {
         "server_id": {
@@ -77,7 +77,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/disconnected": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/disconnected": {
       "description": "Channel for the API to process for when a player disconnects from a server",
       "parameters": {
         "server_id": {
@@ -94,7 +94,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/resourcesGathered": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/resourcesGathered": {
       "description": "Channel for the API to process for when a player gathers some resources",
       "parameters": {
         "server_id": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/respawned": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/respawned": {
       "description": "Channel for the API to process for when a player respawn",
       "parameters": {
         "server_id": {
@@ -128,7 +128,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/combat/playerhit": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/combat/playerhit": {
       "description": "Channel for the API to process for when a player hits another player",
       "parameters": {
         "server_id": {
@@ -145,7 +145,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/pickup": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/pickup": {
       "description": "Channel for the API to process for when a player pickup items ingame",
       "parameters": {
         "server_id": {
@@ -165,7 +165,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/loot": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/loot": {
       "description": "Channel for the API to process for when a player loots an item ingame",
       "parameters": {
         "server_id": {
@@ -185,7 +185,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/crafted": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/crafted": {
       "description": "Channel for the API to process for when a player crafts items ingame",
       "parameters": {
         "server_id": {
@@ -205,7 +205,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/events/command": {
+    "v0/rust/servers/{server_id}/events/command": {
       "description": "Channel for the API to process for when a server command is run",
       "parameters": {
         "server_id": {
@@ -219,7 +219,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/reported": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/reported": {
       "description": "Channel for the API to process for when a player is reported",
       "parameters": {
         "server_id": {
@@ -236,7 +236,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/unbanned": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/unbanned": {
       "description": "Channel for notifying a server unbanned a player",
       "parameters": {
         "server_id": {
@@ -253,7 +253,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/banned": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/banned": {
       "description": "Channel for notifying a server banned a player",
       "parameters": {
         "server_id": {
@@ -270,7 +270,7 @@
         }
       }
     },
-    "rust/servers/{server_id}/players/{steam_id}/events/chat": {
+    "v0/rust/servers/{server_id}/players/{steam_id}/events/chat": {
       "description": "Channel for when a player chats ingame",
       "parameters": {
         "server_id": {
