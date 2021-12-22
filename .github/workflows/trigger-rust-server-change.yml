@@ -1,0 +1,15 @@
+on: 
+  push:
+    paths:
+      - 'components/**'
+      - 'rust_server.json'
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke workflow without inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Auto update generate client when template updates
+          token: ${{ secrets.GENERATOR_ACCESS }}
+          repo: benc-uk/example
