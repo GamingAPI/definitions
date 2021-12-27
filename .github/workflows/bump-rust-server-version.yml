@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Automated Version Bump
         id: version_bump
-        uses: 'jonaslagoni/gh-action-asyncapi-bump-version@main'
+        uses: 'jonaslagoni/gh-action-asyncapi-document-bump@main'
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
