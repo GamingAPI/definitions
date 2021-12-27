@@ -1,0 +1,2024 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+	  "title": "Public API",
+	  "description": "Pulbic API for fetching historic game data from the rust server",
+	  "contact": {
+		"email": "jonas-lt@live.dk"
+	  },
+	  "version": "1.0.0"
+	},
+	"servers": [
+	  {
+		"url": "https://virtserver.swaggerhub.com/jonaslagoni/RustServer/1.0.0"
+	  },
+	  {
+		"url": "http://virtserver.swaggerhub.com/jonaslagoni/RustServer/1.0.0"
+	  }
+	],
+	"tags": [
+	  {
+		"name": "Server",
+		"description": "Operations available to retrieve information about a server"
+	  },
+	  {
+		"name": "Player",
+		"description": "Operations available to retrieve information about the player"
+	  }
+	],
+	"paths": {
+	  "/servers": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Get all the servers",
+		  "description": "This returns basic information about all the servers\n",
+		  "operationId": "getServers",
+		  "responses": {
+			"200": {
+			  "description": "the basic information about all the servers",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/Server"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipes": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Get all wipes from a server",
+		  "description": "This returns all the wipes on the server\n",
+		  "operationId": "getServerWipes",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the wipes from",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The wipes",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/Wipe"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Get basic server information",
+		  "description": "This returns basic information about a specific server\n",
+		  "operationId": "getServer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the basic information about",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the basic information about the server",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/Server"
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipe/{wipe_id}/huntforweapons": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Hunt for weapons list for the specific server in the specific wipe.",
+		  "description": "This returns a list of all the hunt for weapons items for the specific wipe and if any of them has been found and by who..\n",
+		  "operationId": "getHuntForWeaponsForWipe",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the hunt for weapons for.",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "wipe_id",
+			  "in": "path",
+			  "description": "The wipe id to retrieve the hunt for weapons for.",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The list of hunt for weapons items",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/HuntForWeapon"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/huntforweapons": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Hunt for weapons list of the current wipe.",
+		  "description": "This returns a list of all the hunt for weapons items for this wipe and if any of them has been found and by who..\n",
+		  "operationId": "getHuntForWeaponsForCurrentWipe",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the hunt for weapons for.",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The list of hunt for weapons items",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/HuntForWeapon"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipe/{wipe_id}/leaderboards": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Leaderboard stats on specific server in the specific wipe.",
+		  "description": "This returns a list of players on the leaderboard\n",
+		  "operationId": "getLeaderboardsForWipe",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "wipe_id",
+			  "in": "path",
+			  "description": "The wipe id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The list of leaderboard players",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/LeaderBoardPlayer"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/leaderboards": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Leaderboard stats on specific server.",
+		  "description": "This returns a list of players on the leaderboard\n",
+		  "operationId": "getLeaderboards",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The list of leaderboard players",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/LeaderBoardPlayer"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/titles": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "A list of all titles on specific server.",
+		  "description": "This returns all the titles on a server",
+		  "operationId": "getTitlesFromServer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the titles for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of titles on the server",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/Title"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/achievements": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "A list of all achievements on specific server.",
+		  "description": "This returns all the achievements on a server",
+		  "operationId": "getAchievementsOfServer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the achievements for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of achievements the server has",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/Achievement"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipe/{wipe_id}/combatlog/kills": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Kills on a server in a wipe",
+		  "description": "This returns all the kills on a specific server in the specific wipe",
+		  "operationId": "getCombatKillsOnWipe",
+		  "parameters": [
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the kills on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "wipe_id",
+			  "in": "path",
+			  "description": "The wipe id to retrieve the kills on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of kills on a server, listed as newest first.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/CombatKill"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/combatlog/kills": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "Kills on a server",
+		  "description": "This returns all the kills on a specific server",
+		  "operationId": "getServerCombatKills",
+		  "parameters": [
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the kills on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of kills on a server, listed as newest first.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/CombatKill"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/achievements/groups": {
+		"get": {
+		  "tags": [
+			"Server"
+		  ],
+		  "summary": "A list of all groups with subgroups and achievements for a server",
+		  "description": "This returns the list of groups with subgroups and their achievements for a server",
+		  "operationId": "getAchievementGroupsOfServer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the achievement groups for.",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Returns the list of groups with subgroups and their achievements.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/AchievementGroup"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipe/{wipe_id}/player/{steam_id}/rank": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "Rank stats on specific player on a specific server on a specific wipe.",
+		  "description": "This returns the rank of the specific player on the specific server in a specific wipe.",
+		  "operationId": "getRankOfPlayerOnWipe",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "wipe_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The rank of the player on the specific server in the specific wipe.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/RankPlayer"
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/player/{steam_id}/rank": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "Rank stats on specific player on a specific server.",
+		  "description": "This returns the rank of the specific player on the specific server.",
+		  "operationId": "getRankOfPlayer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the obtained achievements for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the basic information about the server",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/RankPlayer"
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipe/{wipe_id}/player/{steam_id}/combatlog/deaths": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A players deaths on a server",
+		  "description": "This returns all the players deaths on a specific server in the specific wipe",
+		  "operationId": "getPlayerCombatDeathsOnWipe",
+		  "parameters": [
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the deaths on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "wipe_id",
+			  "in": "path",
+			  "description": "The wipe id to retrieve the deaths on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the deaths for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of deaths for a player listed as newest first.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/CombatKill"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/player/{steam_id}/combatlog/deaths": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A players deaths on a server",
+		  "description": "This returns all the players deaths on a specific server",
+		  "operationId": "getPlayerCombatDeaths",
+		  "parameters": [
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the deaths on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the deaths for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of deaths for a player listed as newest first.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/CombatKill"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/wipe/{wipe_id}/player/{steam_id}/combatlog/kills": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A players kills on a server",
+		  "description": "This returns all the players kills on a specific server",
+		  "operationId": "getPlayerCombatKillsInWipe",
+		  "parameters": [
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the kills on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "wipe_id",
+			  "in": "path",
+			  "description": "The wipe id to retrieve the kills on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the obtained kills for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of kills for a player listed as newest first.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/CombatKill"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/player/{steam_id}/combatlog/kills": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A players kills on a server",
+		  "description": "This returns all the players kills on a specific server",
+		  "operationId": "getPlayerCombatKills",
+		  "parameters": [
+			{
+			  "name": "offset",
+			  "in": "query",
+			  "description": "The number of items to skip before starting to collect the result set.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "limit",
+			  "in": "query",
+			  "description": "The numbers of items to return.",
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the kills on",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the obtained kills for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of kills for a player listed as newest first.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/CombatKill"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/player/{steam_id}/titles": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A list of titles for the player.",
+		  "description": "This returns all the players titles",
+		  "operationId": "getTitlesOfPlayer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the leaderboard for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the obtained achievements for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of titles the player owns",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/PlayerTitle"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/player/{steam_id}/achievements/groups": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A list of the player's achievements devided into groups.",
+		  "description": "A list of the player's achievements devided into groups.",
+		  "operationId": "getAchievementGroupsForPlayerOnServer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the achievement groups for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the obtained achievements for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "The list of player achievements divided into groups.",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/PlayerAchievementGroup"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "Player does not exist, does not have any achievements, or no achievement groups on the server.",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  },
+	  "/servers/{server_id}/player/{steam_id}/achievements": {
+		"get": {
+		  "tags": [
+			"Player"
+		  ],
+		  "summary": "A list of players obtained achievements.",
+		  "description": "This returns all the players obtained achievements",
+		  "operationId": "getAchievementsOfPlayer",
+		  "parameters": [
+			{
+			  "name": "server_id",
+			  "in": "path",
+			  "description": "The server id to retrieve the achievements for",
+			  "required": true,
+			  "schema": {
+				"type": "integer"
+			  }
+			},
+			{
+			  "name": "steam_id",
+			  "in": "path",
+			  "description": "The player's steamID64 to find the obtained achievements for, must be 17 chars long.",
+			  "required": true,
+			  "schema": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "the list of achievements the player has obtained",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/components/schemas/PlayerAchievement"
+					}
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "Bad request",
+			  "content": {}
+			},
+			"401": {
+			  "description": "You are not authorized to access this resource",
+			  "content": {}
+			},
+			"404": {
+			  "description": "The specified resource was not found",
+			  "content": {}
+			},
+			"500": {
+			  "description": "Internal Server Error could not process your request",
+			  "content": {}
+			}
+		  },
+		  "security": [
+			{
+			  "BearerAuth": []
+			}
+		  ]
+		}
+	  }
+	},
+	"components": {
+	  "schemas": {
+		"AchievementGroup": {
+		  "required": [
+			"achievement_points",
+			"achievements",
+			"achievements_count",
+			"description",
+			"group_id",
+			"sub_groups",
+			"title"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"sub_groups": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/components/schemas/AchievementGroup"
+			  }
+			},
+			"achievements": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/components/schemas/Achievement"
+			  }
+			},
+			"icon": {
+			  "type": "string"
+			},
+			"title": {
+			  "type": "string"
+			},
+			"description": {
+			  "type": "string"
+			},
+			"group_id": {
+			  "type": "integer"
+			},
+			"achievements_count": {
+			  "type": "integer",
+			  "description": "It is the total amount of achievements in this group and sub groups."
+			},
+			"achievement_points": {
+			  "type": "integer"
+			}
+		  }
+		},
+		"Achievement": {
+		  "required": [
+			"achievement_desc",
+			"achievement_id",
+			"achievement_point",
+			"achievement_title"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"achievement_id": {
+			  "type": "integer"
+			},
+			"achievement_title": {
+			  "type": "string"
+			},
+			"achievement_desc": {
+			  "type": "string"
+			},
+			"achievement_point": {
+			  "type": "integer"
+			},
+			"related_titles": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/components/schemas/RelatedTitle"
+			  }
+			}
+		  }
+		},
+		"PlayerAchievementGroup": {
+		  "required": [
+			"achievement_points",
+			"achievements",
+			"achievements_completed_count",
+			"group_id",
+			"sub_groups"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"group_id": {
+			  "type": "integer"
+			},
+			"sub_groups": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/components/schemas/PlayerAchievementGroup"
+			  }
+			},
+			"achievements": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/components/schemas/PlayerAchievement"
+			  }
+			},
+			"achievements_completed_count": {
+			  "type": "integer"
+			},
+			"achievement_points": {
+			  "type": "integer"
+			}
+		  }
+		},
+		"PlayerAchievement": {
+		  "required": [
+			"achievement",
+			"receive_date"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"receive_date": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"achievement": {
+			  "$ref": "#/components/schemas/Achievement"
+			}
+		  }
+		},
+		"PlayerPosition": {
+		  "required": [
+			"x",
+			"y",
+			"z"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"x": {
+			  "type": "number"
+			},
+			"y": {
+			  "type": "number"
+			},
+			"z": {
+			  "type": "number"
+			}
+		  }
+		},
+		"CombatKill": {
+		  "required": [
+			"assists",
+			"hits",
+			"killer",
+			"victim"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"victim": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The victims's steamID64, must be 17 chars long."
+			},
+			"killer": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The killers's steamID64, must be 17 chars long."
+			},
+			"assists": {
+			  "type": "array",
+			  "items": {
+				"pattern": "^[0-9]{17}$",
+				"type": "string",
+				"description": "The assister's steamID64, must be 17 chars long."
+			  }
+			},
+			"hits": {
+			  "type": "array",
+			  "description": "This array list is sorted inverted, so the last hit (kill hit) at index 0, second last hit at index 1, etc",
+			  "items": {
+				"$ref": "#/components/schemas/Hit"
+			  }
+			}
+		  }
+		},
+		"Hit": {
+		  "required": [
+			"attacker",
+			"attacker_active_item",
+			"attacker_position",
+			"hit_area_id",
+			"hit_damage",
+			"hit_timestamp",
+			"victim",
+			"victim_active_item",
+			"victim_position"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"attacker": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The attacker's steamID64, must be 17 chars long."
+			},
+			"victim": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The attacker's steamID64, must be 17 chars long."
+			},
+			"hit_timestamp": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"hit_damage": {
+			  "type": "number"
+			},
+			"hit_distance": {
+			  "type": "number"
+			},
+			"hit_area_id": {
+			  "type": "integer",
+			  "description": "1=\"Head\", 2=\"Chest\", 4=\"Stomach\", 8=\"Arm\", 16=\"Hand\", 32=\"Leg\", 64=\"Foot\", -1=\"Everywhere\""
+			},
+			"attacker_active_item": {
+			  "$ref": "#/components/schemas/Hit_attacker_active_item"
+			},
+			"victim_active_item": {
+			  "$ref": "#/components/schemas/Hit_attacker_active_item"
+			},
+			"attacker_position": {
+			  "$ref": "#/components/schemas/PlayerPosition"
+			},
+			"victim_position": {
+			  "$ref": "#/components/schemas/PlayerPosition"
+			}
+		  }
+		},
+		"RelatedTitle": {
+		  "required": [
+			"required_achievements",
+			"title",
+			"title_id"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"title_id": {
+			  "type": "integer"
+			},
+			"title": {
+			  "type": "string"
+			},
+			"required_achievements": {
+			  "type": "array",
+			  "items": {
+				"type": "integer",
+				"description": "The id of the required achievement to complete before receiving this title"
+			  }
+			}
+		  }
+		},
+		"Title": {
+		  "required": [
+			"description",
+			"title",
+			"title_color",
+			"title_id"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"title_id": {
+			  "type": "integer"
+			},
+			"title": {
+			  "type": "string"
+			},
+			"title_color": {
+			  "type": "string"
+			},
+			"description": {
+			  "type": "string"
+			},
+			"required_achievements": {
+			  "type": "array",
+			  "items": {
+				"type": "integer",
+				"description": "The id of the required achievement to complete before receiving this title"
+			  }
+			}
+		  }
+		},
+		"PlayerTitle": {
+		  "required": [
+			"description",
+			"recieved_date",
+			"title",
+			"title_color",
+			"title_id"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"title_id": {
+			  "type": "integer"
+			},
+			"recieved_date": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"title": {
+			  "type": "string"
+			},
+			"title_color": {
+			  "type": "string"
+			},
+			"description": {
+			  "type": "string"
+			},
+			"required_achievements": {
+			  "type": "array",
+			  "items": {
+				"type": "integer",
+				"description": "The id of the required achievement to complete before receiving this title"
+			  }
+			}
+		  }
+		},
+		"HuntForWeapon": {
+		  "required": [
+			"item_name",
+			"item_notification_id",
+			"item_type"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"player_steam_id": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The player's steamID64, must be 17 chars long."
+			},
+			"player_name": {
+			  "type": "string",
+			  "description": "The player name who was the first. "
+			},
+			"pickup_time": {
+			  "type": "string",
+			  "description": "The time the item was pickedup.",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"connection_time": {
+			  "type": "string",
+			  "description": "The time the player connected to the server.",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"item_notification_id": {
+			  "type": "integer"
+			},
+			"item_name": {
+			  "type": "string",
+			  "description": "Name of the item"
+			},
+			"item_type": {
+			  "type": "string",
+			  "description": "Type of the item"
+			}
+		  },
+		  "description": "If player not sat it means the item has not been found yet."
+		},
+		"RankPlayer": {
+		  "required": [
+			"death_count",
+			"kill_count",
+			"kill_rank",
+			"name",
+			"steam_id"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"steam_id": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The player's steamID64, must be 17 chars long."
+			},
+			"name": {
+			  "type": "string"
+			},
+			"kill_count": {
+			  "type": "integer"
+			},
+			"death_count": {
+			  "type": "integer"
+			},
+			"kill_rank": {
+			  "type": "integer"
+			}
+		  }
+		},
+		"LeaderBoardPlayer": {
+		  "required": [
+			"death_count",
+			"kill_count",
+			"name",
+			"rank",
+			"steam_id"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"rank": {
+			  "type": "integer"
+			},
+			"steam_id": {
+			  "pattern": "^[0-9]{17}$",
+			  "type": "string",
+			  "description": "The player's steamID64, must be 17 chars long."
+			},
+			"name": {
+			  "type": "string"
+			},
+			"kill_count": {
+			  "type": "integer"
+			},
+			"death_count": {
+			  "type": "integer"
+			}
+		  }
+		},
+		"Wipe": {
+		  "required": [
+			"wipe_id",
+			"wipe_start"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"wipe_id": {
+			  "type": "integer"
+			},
+			"wipe_start": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"wipe_end": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			}
+		  }
+		},
+		"Server": {
+		  "required": [
+			"bp_wipe_interval",
+			"map_wipe_interval",
+			"max_players",
+			"name",
+			"online_count",
+			"server_id",
+			"server_ip",
+			"server_port"
+		  ],
+		  "type": "object",
+		  "properties": {
+			"server_id": {
+			  "type": "integer"
+			},
+			"name": {
+			  "type": "string",
+			  "example": "Blackhawk #1"
+			},
+			"server_ip": {
+			  "type": "string",
+			  "example": "0.0.0.0"
+			},
+			"server_port": {
+			  "type": "integer",
+			  "example": 28015
+			},
+			"map_wipe_interval": {
+			  "type": "integer"
+			},
+			"bp_wipe_interval": {
+			  "type": "integer"
+			},
+			"max_players": {
+			  "type": "integer"
+			},
+			"online_count": {
+			  "type": "integer"
+			},
+			"current_wipe_id": {
+			  "type": "integer"
+			},
+			"wipe_start": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			},
+			"wipe_end": {
+			  "type": "string",
+			  "format": "date-time",
+			  "example": "2016-08-29T09:12:33.001Z"
+			}
+		  }
+		},
+		"Hit_attacker_active_item": {
+		  "type": "object",
+		  "properties": {
+			"item_name": {
+			  "type": "string"
+			},
+			"item_id": {
+			  "type": "integer"
+			}
+		  }
+		}
+	  },
+	  "responses": {
+		"BadRequest": {
+		  "description": "Bad request",
+		  "content": {}
+		},
+		"InternalServer": {
+		  "description": "Internal Server Error could not process your request",
+		  "content": {}
+		},
+		"NotFound": {
+		  "description": "The specified resource was not found",
+		  "content": {}
+		},
+		"Timeout": {
+		  "description": "Request timed out, might be internal",
+		  "content": {}
+		},
+		"Unauthorized": {
+		  "description": "You are not authorized to access this resource",
+		  "content": {}
+		}
+	  },
+	  "securitySchemes": {
+		"BearerAuth": {
+		  "type": "apiKey",
+		  "description": "This is a rust server api token for modifying data in the api.",
+		  "name": "Bearer",
+		  "in": "header"
+		}
+	  }
+	}
+  }
