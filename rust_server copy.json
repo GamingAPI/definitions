@@ -19,7 +19,7 @@
   "defaultContentType": "json",
   "channels": {
     "v0/rust/servers/{server_id}/events/wiped": {
-      "description": "Channel for the API to process when a server has just wiped",
+      "description": "Channel for the API to process when a server has just wiped.",
       "parameters": {
         "server_id": {
           "$ref": "./components/parameters.json#/server_id"
