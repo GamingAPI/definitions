@@ -5,6 +5,7 @@ env:
   GH_EMAIL: <jonas-lt@live.dk>
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
