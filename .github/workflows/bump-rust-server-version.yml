@@ -11,26 +11,27 @@ on:
     paths:
       - 'components/**'
       - 'rust_processor.json'
-
 jobs:
   bump:
-    - name: Automated Version Bump
-      id: version_bump
-      uses: '@lagoni/gh-action-asyncapi-bump-version@main'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-        target-branch: 'main'
-        path-to-asyncapi: './rust_server.json'
-        skip-tag: 'true'
-    - if: steps.version_bump.outputs.wasBumped == 'true'
-      name: Create Pull Request with updated asset files if version was bumped
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GH_TOKEN }}
-        commit-message: 'chore(release): ${{steps.version_bump.newVersion}}'
-        committer: ${{env.GH_USER}}
-        author: ${{env.GH_USER}}
-        title: 'chore(release): ${{steps.version_bump.newVersion}}'
-        body: 'Version bump AsyncAPI document'
-        branch: version-bump/${{steps.version_bump.newVersion}} 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automated Version Bump
+        id: version_bump
+        uses: '@lagoni/gh-action-asyncapi-bump-version'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          target-branch: 'main'
+          path-to-asyncapi: './rust_server.json'
+          skip-tag: 'true'
+      - if: steps.version_bump.outputs.wasBumped == 'true'
+        name: Create Pull Request with updated asset files if version was bumped
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: 'chore(release): ${{steps.version_bump.newVersion}}'
+          committer: ${{env.GH_USER}}
+          author: ${{env.GH_USER}}
+          title: 'chore(release): ${{steps.version_bump.newVersion}}'
+          body: 'Version bump AsyncAPI document'
+          branch: version-bump/${{steps.version_bump.newVersion}} 
