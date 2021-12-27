@@ -1,5 +1,7 @@
 on: 
   push:
+    branches:
+      - main
     paths:
       - 'components/**'
       - 'rust_server.json'
