@@ -8,7 +8,7 @@
     "production": {
       "url": "test.nats.org:4444",
       "protocol": "nats",
-      "description": "Test broker, placeholder"
+      "description": "Test broker"
     }
   },
   "defaultContentType": "json",
