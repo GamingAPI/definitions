@@ -10,7 +10,7 @@ on:
       - main
     paths:
       - 'components/**'
-      - 'rust_processor.json'
+      - 'rust_server.json'
 jobs:
   bump:
     runs-on: ubuntu-latest
