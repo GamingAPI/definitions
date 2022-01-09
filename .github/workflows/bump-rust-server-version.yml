@@ -17,21 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Automated Version Bump
-        id: version_bump_dry_run
-        uses: jonaslagoni/gh-action-asyncapi-document-bump@main
-        env:
-          GITHUB_TOKEN: '${{ secrets.GH_TOKEN }}'
-        with:
-          path-to-asyncapi: ./rust_server.json
-          dry-run: 'true'
-      - if: steps.version_bump_dry_run.outputs.wasBumped == 'true'
-        uses: peterjgrainger/action-create-branch@v2.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          branch: 'version-bump/${{steps.version_bump_dry_run.newVersion}}'
-      - if: steps.version_bump_dry_run.outputs.wasBumped == 'true'
-        name: Automated Version Bump
         id: version_bump
         uses: jonaslagoni/gh-action-asyncapi-document-bump@main
         env:
@@ -39,6 +24,8 @@ jobs:
         with:
           path-to-asyncapi: ./rust_server.json
           skip-tag: 'true'
+          skip-commit: 'true'
+          commit-message: 'chore(release): rust server {{version}}'
       - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Create Pull Request with bumped version
         uses: peter-evans/create-pull-request@v3
@@ -49,4 +36,4 @@ jobs:
           author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
           title: 'chore(release): rust server ${{steps.version_bump.newVersion}}'
           body: Version bump rust server
-          branch: 'version-bump/${{steps.version_bump_dry_run.newVersion}}'
+          branch: 'version-bump/${{steps.version_bump.newVersion}}'
