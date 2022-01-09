@@ -25,7 +25,7 @@ jobs:
           path-to-asyncapi: ./rust_server.json
           skip-tag: 'true'
           skip-commit: 'true'
-          commit-message: 'chore(release): rust server v{{version}}'
+          commit-message: 'chore\(release\): rust server v{{version}}'
       - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Create Pull Request with bumped version
         uses: peter-evans/create-pull-request@v3
