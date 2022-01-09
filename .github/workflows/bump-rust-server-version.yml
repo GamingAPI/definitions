@@ -25,15 +25,15 @@ jobs:
           path-to-asyncapi: ./rust_server.json
           skip-tag: 'true'
           skip-commit: 'true'
-          commit-message: 'chore(release): rust server {{version}}'
+          commit-message: 'chore(release): rust server v{{version}}'
       - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Create Pull Request with bumped version
         uses: peter-evans/create-pull-request@v3
         with:
           token: '${{ secrets.GH_TOKEN }}'
-          commit-message: 'chore(release): rust server ${{steps.version_bump.newVersion}}'
+          commit-message: 'chore(release): rust server v${{steps.version_bump.newVersion}}'
           committer: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
           author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
-          title: 'chore(release): rust server ${{steps.version_bump.newVersion}}'
+          title: 'chore(release): rust server v${{steps.version_bump.newVersion}}'
           body: Version bump rust server
-          branch: 'version-bump/${{steps.version_bump.newVersion}}'
+          branch: 'version-bump/v${{steps.version_bump.newVersion}}'
