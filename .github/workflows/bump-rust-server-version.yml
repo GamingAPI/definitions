@@ -31,9 +31,9 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: '${{ secrets.GH_TOKEN }}'
-          commit-message: 'chore(release): rust server v${{steps.version_bump.newVersion}}'
+          commit-message: 'chore(release): rust server v${{steps.version_bump.outputs.newVersion}}'
           committer: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
           author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
-          title: 'chore(release): rust server v${{steps.version_bump.newVersion}}'
+          title: 'chore(release): rust server v${{steps.version_bump.outputs.newVersion}}'
           body: Version bump rust server
-          branch: 'version-bump/v${{steps.version_bump.newVersion}}'
+          branch: 'version-bump/v${{steps.version_bump.outputs.newVersion}}'
