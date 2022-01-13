@@ -6,14 +6,9 @@
   },
   "servers": {
     "production": {
-      "url": "test.nats.org:{port}",
+      "url": "test.nats.org:4444",
       "protocol": "nats",
-      "description": "Test broker",
-      "variables": {
-        "port": {
-          "default": "4444"
-        }
-      }
+      "description": "Test broker"
     }
   },
   "defaultContentType": "json",
