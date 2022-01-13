@@ -36,4 +36,4 @@ jobs:
           author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
           title: 'chore(release): rust processor v${{steps.version_bump.outputs.newVersion}}'
           body: Version bump rust processor
-          branch: 'version-bump/v${{steps.version_bump.outputs.newVersion}}'
+          branch: 'version-bump/rust-processor-v${{steps.version_bump.outputs.newVersion}}'
