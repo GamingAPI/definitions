@@ -1,7 +1,7 @@
 {
   "asyncapi": "2.2.0",
   "info": {
-    "title": "Rust API",
+    "title": "Rust processor",
     "version": "0.1.0"
   },
   "servers": {
