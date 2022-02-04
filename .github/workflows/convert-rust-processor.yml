@@ -1,0 +1,30 @@
+name: Convert the rust processor to new AsyncAPI version
+env:
+  GH_USER: jonaslagoni
+  GH_EMAIL: <jonas-lt@live.dk>
+on:
+  workflow_dispatch: 
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install converter
+        run: npm i -g @asyncapi/converter 
+      - name: Convert Processor AsyncAPI file
+        run: asyncapi-converter rust_processor.json > rust_processor.json
+      - name: Create Pull Request with converted document
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: '${{ secrets.GH_TOKEN }}'
+          commit-message: 'feat: convert rust processor to newest AsyncAPI version'
+          committer: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
+          author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
+          title: 'feat: convert rust processor to newest AsyncAPI version'
+          body: Update rust processor to newest AsyncAPI version
+          branch: 'convert/rust-processor'
+
