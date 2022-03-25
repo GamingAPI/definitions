@@ -1,9 +1,8 @@
 {
-    "asyncapi": "2.2.0",
+    "asyncapi": "2.3.0",
     "info": {
-        "title": "Rust server",
-        "description": "test",
-        "version": "0.4.1"
+        "title": "Rust processor",
+        "version": "0.2.0"
     },
     "servers": {
         "production": {
@@ -15,16 +14,21 @@
     "defaultContentType": "json",
     "channels": {
         "v0/rust/servers/{server_id}/events/wiped": {
-            "description": "Channel for the API to process when a server has just wiped.",
+            "description": "Channel for the API to process when a server has just wiped",
             "parameters": {
                 "server_id": {
                     "$ref": "./components/parameters.json#/server_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerWiped",
                 "message": {
                     "$ref": "./components/messages/ServerWiped.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -35,10 +39,15 @@
                     "$ref": "./components/parameters.json#/server_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerStarted",
                 "message": {
                     "$ref": "./components/messages/ServerStarted.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -49,10 +58,15 @@
                     "$ref": "./components/parameters.json#/server_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerStopping",
                 "message": {
                     "$ref": "./components/messages/ServerStopping.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -66,10 +80,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerConnected",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerConnected.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -83,10 +102,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerDisconnected",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerDisconnected.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -100,10 +124,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerResourceGathered",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerResourceGathered.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -117,10 +146,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerRespawned",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerRespawned.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -134,10 +168,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerCombatPlayerhit",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerCombatPlayerhit.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -154,10 +193,15 @@
                     "$ref": "./components/parameters.json#/item_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerItemPickup",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerItemPickup.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -174,10 +218,15 @@
                     "$ref": "./components/parameters.json#/item_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerItemLoot",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerItemLoot.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -194,10 +243,15 @@
                     "$ref": "./components/parameters.json#/item_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerItemCrafted",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerItemCrafted.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -208,10 +262,15 @@
                     "$ref": "./components/parameters.json#/server_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerCommand",
                 "message": {
                     "$ref": "./components/messages/ServerCommand.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -225,10 +284,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerReported",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerReported.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -242,10 +306,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerUnbanned",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerUnbanned.json"
+                }
+            },
+            "bindings": {
+                "nats": {
+                    "queue": "processing"
                 }
             }
         },
@@ -259,10 +328,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerBanned",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerBanned.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         },
@@ -276,10 +350,15 @@
                     "$ref": "./components/parameters.json#/steam_id"
                 }
             },
-            "subscribe": {
+            "publish": {
                 "operationId": "ServerPlayerChat",
                 "message": {
                     "$ref": "./components/messages/ServerPlayerChat.json"
+                },
+                "bindings": {
+                    "nats": {
+                        "queue": "processing"
+                    }
                 }
             }
         }

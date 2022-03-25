@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "lint:documents": "chmod +x ./scripts/spectral.js && ./scripts/spectral.js"
+  },
+  "dependencies": {
+    "@stoplight/spectral-cli": "^6.3.0"
+  }
+}
