@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "bundle": "node bundle-documents.js"
+  },
+  "dependencies": {
+    "@asyncapi/bundler": "0.1.0",
+    "@asyncapi/parser": "1.14.1"
+  }
+}
