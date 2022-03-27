@@ -6,9 +6,9 @@
     },
     "servers": {
         "production": {
-            "url": "test.nats.org:4444",
+            "url": "148.251.43.103:4222",
             "protocol": "nats",
-            "description": "Test broker"
+            "description": "GamingAPI NATS production broker"
         }
     },
     "defaultContentType": "json",
