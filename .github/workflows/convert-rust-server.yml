@@ -16,7 +16,7 @@ jobs:
       - name: Install converter
         run: npm i -g @asyncapi/converter 
       - name: Convert Rust Server AsyncAPI file
-        run: asyncapi-converter rust_server.json > rust_server.json
+        run: asyncapi-converter ./documents/rust_server.asyncapi.json > ./documents/rust_server.asyncapi.json
       - name: Create Pull Request with converted document
         uses: peter-evans/create-pull-request@v3
         with:

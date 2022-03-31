@@ -8,8 +8,8 @@ on:
     branches:
       - main
     paths:
-      - components/**
-      - rust_server.json
+      - documents/components/**
+      - documents/rust_server.asyncapi.json
 jobs:
   bump:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GH_TOKEN }}'
         with:
-          path-to-asyncapi: ./rust_server.json
+          path-to-asyncapi: ./documents/rust_server.asyncapi.json
           skip-tag: 'true'
           skip-commit: 'true'
           commit-message: 'chore\(release\): rust server v{{version}}'
