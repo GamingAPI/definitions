@@ -1,0 +1,32 @@
+{
+    "asyncapi": "2.3.0",
+    "info": {
+        "title": "Public gaming API",
+        "description": "Can be used to interact with your game servers. ",
+        "version": "0.1.0"
+    },
+    "servers": {
+        "production": {
+            "url": "148.251.43.103:4222",
+            "protocol": "nats",
+            "description": "GamingAPI NATS production broker"
+        }
+    },
+    "defaultContentType": "json",
+    "channels": {
+        "v0/rust/servers/{server_id}/events/started": {
+            "description": "Channel for the API to process for when a server has started",
+            "parameters": {
+                "server_id": {
+                    "$ref": "./components/parameters.json#/server_id"
+                }
+            },
+            "subscribe": {
+                "operationId": "ServerStarted",
+                "message": {
+                    "$ref": "./components/messages/ServerStarted.json"
+                }
+            }
+        }
+    }
+}
