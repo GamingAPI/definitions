@@ -27,6 +27,19 @@ jobs:
           skip-commit: 'true'
           commit-message: 'chore\(release\): rust server v{{version}}'
       - if: steps.version_bump.outputs.wasBumped == 'true'
+        name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - if: steps.version_bump.outputs.wasBumped == 'true' 
+        name: Install dependencies
+        run: npm install
+      - if: steps.version_bump.outputs.wasBumped == 'true'
+        name: Bundle documents
+        run: npm run bundle
+      - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Create Pull Request with bumped version
         uses: peter-evans/create-pull-request@v3
         with:
