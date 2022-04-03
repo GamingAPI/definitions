@@ -1,0 +1,68 @@
+---
+extends: [[spectral:asyncapi, off]]
+functions: [snake-case-properties, use-suffix-for-date-time]
+rules:
+  asyncapi-channel-no-empty-parameter: error
+  asyncapi-channel-no-query-nor-fragment: error
+  asyncapi-channel-no-trailing-slash: error
+  asyncapi-headers-schema-type-object: error
+  asyncapi-info-contact-properties: error
+  asyncapi-info-description: error
+  asyncapi-info-license-url: error
+  asyncapi-operation-description: error
+  asyncapi-parameter-description: error
+  asyncapi-operation-operationId: error
+  asyncapi-payload: error
+  asyncapi-server-no-trailing-slash: error
+  asyncapi-tag-description: error
+  asyncapi-unused-components-schema: error
+  asyncapi-channel-must-have-version:
+    given: "$.channels"
+    description: 'Channel MUST have version number included in the topic. Example:
+      "v1/channel/example"'
+    severity: error
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: ".*(/v(.*[0-9])/).*"
+  asyncapi-parameters-must-use-references:
+    description: Channel parameters must be references
+    given: $.channels.[*]
+    severity: error
+    resolved: false
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            parameters:
+              additionalProperties:
+                type: object
+                required:
+                  - $ref
+  asyncapi-messages-must-use-references:
+    description: Operation messages must be references
+    given: $.channels.[*][subscribe,publish]
+    severity: error
+    resolved: false
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            message:
+              additionalProperties:
+                type: object
+                required:
+                  - $ref
+  asyncapi-properties-must-follow-snake-case:
+    given: $..properties
+    severity: error
+    then:
+      function: snake-case-properties
+  asyncapi-date-time-must-use-at-suffix:
+    given: $..properties
+    severity: error
+    then:
+      function: use-suffix-for-date-time

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "chmod +x ./scripts/spectral.js && ./scripts/spectral.js",
+    "lint": "chmod +x ./scripts/spectral.sh && ./scripts/spectral.sh",
     "bundle": "cd documents && npm i && npm run bundle"
   },
   "dependencies": {
