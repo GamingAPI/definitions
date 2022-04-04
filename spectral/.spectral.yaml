@@ -1,21 +1,23 @@
 ---
 extends: [[spectral:asyncapi, off]]
-functions: [snake-case-properties, use-suffix-for-date-time]
+functions: [snake-case-properties, use-suffix-for-date-time, payload-with-no-additional-properties-unless-map]
 rules:
   asyncapi-channel-no-empty-parameter: error
   asyncapi-channel-no-query-nor-fragment: error
   asyncapi-channel-no-trailing-slash: error
+  asyncapi-server-no-trailing-slash: error
   asyncapi-headers-schema-type-object: error
+  asyncapi-unused-components-schema: error
+  asyncapi-payload: error
+
   asyncapi-info-contact-properties: error
   asyncapi-info-description: error
   asyncapi-info-license-url: error
   asyncapi-operation-description: error
   asyncapi-parameter-description: error
   asyncapi-operation-operationId: error
-  asyncapi-payload: error
-  asyncapi-server-no-trailing-slash: error
   asyncapi-tag-description: error
-  asyncapi-unused-components-schema: error
+
   asyncapi-channel-must-have-version:
     given: "$.channels"
     description: 'Channel MUST have version number included in the topic. Example:
@@ -66,3 +68,19 @@ rules:
     severity: error
     then:
       function: use-suffix-for-date-time
+  asyncapi-payload-with-no-additional-properties-unless-map:
+    given: $.channels.[*][subscribe,publish].message.payload.@object()
+    severity: error
+    then:
+      function: payload-with-no-additional-properties-unless-map
+  asyncapi-message-payload-must-have-root-level-object:
+    description: Message payloads must at the root be an object
+    given: $.channels.[*][subscribe,publish].message.payload
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            type:
+              const: "object"

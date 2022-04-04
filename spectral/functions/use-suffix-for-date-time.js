@@ -1,5 +1,5 @@
 // Based on https://json-schema.org/understanding-json-schema/reference/string.html#dates-and-times
-export default (properties, options, { path }) => {
+export default (properties, _, { path }) => {
   const results = [];
   for (const [propertyName, property] of Object.entries(properties)) {
     const formats = ["date-time", "time", "date"];
