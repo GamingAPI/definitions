@@ -15,14 +15,11 @@ jobs:
         uses: amannn/action-semantic-pull-request@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: List AsyncAPI files
-        uses: 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 14
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
       - name: Install node dependencies
         run: npm install
       - name: Lint AsyncAPI files

@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "lint": "chmod +x ./scripts/spectral.sh && ./scripts/spectral.sh",
-    "bundle": "cd documents && npm i && npm run bundle"
+    "lint": "spectral lint ./documents/*.asyncapi.json --ruleset ./spectral/.spectral.yaml",
+    "bundle": "cd documents && node bundle-documents.js"
   },
-  "dependencies": {
-    "@stoplight/spectral-cli": "^6.3.0"
+  "devDependencies": {
+    "@stoplight/spectral-cli": "^6.3.0",
+    "@asyncapi/bundler": "0.1.0"
   }
 }

@@ -2,14 +2,6 @@
 extends: [[spectral:asyncapi, off]]
 functions: [snake-case-properties, use-suffix-for-date-time, payload-with-no-additional-properties-unless-map]
 rules:
-  asyncapi-channel-no-empty-parameter: error
-  asyncapi-channel-no-query-nor-fragment: error
-  asyncapi-channel-no-trailing-slash: error
-  asyncapi-server-no-trailing-slash: error
-  asyncapi-headers-schema-type-object: error
-  asyncapi-unused-components-schema: error
-  asyncapi-payload: error
-
   asyncapi-info-contact-properties: error
   asyncapi-info-description: error
   asyncapi-info-license-url: error
@@ -27,9 +19,9 @@ rules:
       field: "@key"
       function: pattern
       functionOptions:
-        match: ".*(/v(.*[0-9])/).*"
+        match: ".*(v(.*[0-9])).*"
   asyncapi-parameters-must-use-references:
-    description: Channel parameters must be references
+    description: Channel parameters must be a reference
     given: $.channels.[*]
     severity: error
     resolved: false
@@ -44,38 +36,47 @@ rules:
                 required:
                   - $ref
   asyncapi-messages-must-use-references:
-    description: Operation messages must be references
-    given: $.channels.[*][subscribe,publish]
+    description: Operation messages must be a reference
+    given: $.channels.[*][subscribe,publish].message
     severity: error
     resolved: false
     then:
       function: schema
       functionOptions:
-        schema:
-          properties:
-            message:
-              additionalProperties:
-                type: object
-                required:
-                  - $ref
+        schema: 
+          if:
+            required:
+              - oneOf
+          then:
+            properties: 
+              oneOf:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - $ref
+          else:
+            type: object
+            required:
+              - $ref
   asyncapi-properties-must-follow-snake-case:
-    given: $..properties
+    given: $.channels.[*][subscribe,publish].message..properties
     severity: error
     then:
       function: snake-case-properties
   asyncapi-date-time-must-use-at-suffix:
-    given: $..properties
+    given: $.channels.[*][subscribe,publish].message..properties
     severity: error
     then:
       function: use-suffix-for-date-time
   asyncapi-payload-with-no-additional-properties-unless-map:
-    given: $.channels.[*][subscribe,publish].message.payload.@object()
+    given: $.channels.[*][subscribe,publish].message..payload.@object()
     severity: error
     then:
       function: payload-with-no-additional-properties-unless-map
   asyncapi-message-payload-must-have-root-level-object:
     description: Message payloads must at the root be an object
-    given: $.channels.[*][subscribe,publish].message.payload
+    given: $.channels.[*][subscribe,publish].message..payload
     severity: error
     then:
       function: schema
