@@ -1,10 +1,12 @@
 {
   "scripts": {
     "lint": "spectral lint ./documents/*.asyncapi.json --ruleset ./spectral/.spectral.yaml",
-    "bundle": "cd documents && node bundle-documents.js"
+    "bundle": "cd documents && node bundle-documents.js",
+    "setup:game": "newGame=$npm_config_new_game accessToken=$npm_config_access_token node scripts/setup_game.js"
   },
   "devDependencies": {
+    "@asyncapi/bundler": "0.1.0",
     "@stoplight/spectral-cli": "^6.3.0",
-    "@asyncapi/bundler": "0.1.0"
+    "octokit": "1.7.1"
   }
 }
