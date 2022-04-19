@@ -11,6 +11,7 @@ async function bundleDocuments(filePath, outputFile) {
     [fileContent]
   );
   fs.writeFileSync(outputFile, bundledDocument.string());
+  console.log(`Done bundling ${fullPath}`);
 };
-bundleDocuments('./rust_server.asyncapi.json', '../bundled/rust_server.asyncapi.bundled.json');
-bundleDocuments('./rust_processor.asyncapi.json', '../bundled/rust_processor.asyncapi.bundled.json');
+bundleDocuments('./rust.asyncapi.json', '../bundled/rust.asyncapi.json');
+bundleDocuments('./rust_public.asyncapi.json', '../bundled/rust_public.asyncapi.json');

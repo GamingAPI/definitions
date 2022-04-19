@@ -1,0 +1,32 @@
+name: Convert AsyncAPI documents to newest AsyncAPI version
+env:
+  GH_USER: jonaslagoni
+  GH_EMAIL: <jonas-lt@live.dk>
+on:
+  workflow_dispatch: 
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install converter
+        run: npm i -g @asyncapi/converter 
+      - name: Convert Rust AsyncAPI file
+        run: asyncapi-converter ./documents/rust.asyncapi.json > ./documents/rust.asyncapi.json
+      - name: Convert Rust public AsyncAPI file
+        run: asyncapi-converter ./documents/rust_public.asyncapi.json > ./documents/rust_public.asyncapi.json
+      - name: Create Pull Request with converted documents
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: '${{ secrets.GH_TOKEN }}'
+          commit-message: 'feat: convert AsyncAPI documents to newest AsyncAPI version'
+          committer: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
+          author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
+          title: 'feat: convert AsyncAPI documents to newest spec version'
+          body: Update all AsyncAPI documents to the newest spec version
+          branch: 'convert/asyncapi'
+

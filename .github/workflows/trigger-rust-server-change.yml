@@ -4,7 +4,7 @@ on:
       - main
     paths:
       - 'documents/components/**'
-      - 'documents/rust_server.asyncapi.json'
+      - 'documents/rust.asyncapi.json'
 jobs:
   generate:
     runs-on: ubuntu-latest
