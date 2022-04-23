@@ -1,10 +1,9 @@
-const {Octokit} = require("octokit");
-const{ execSync } = require('child_process');
+const { Octokit } = require("octokit");
+const { execSync } = require('child_process');
 const libsodium = require('libsodium-wrappers');
 const { writeFileSync } = require("fs");
-const newGame = process.env.newGame;
 const accessToken = process.env.accessToken;
-const octokit = new Octokit({ auth: accessToken});
+const octokit = new Octokit({ auth: accessToken });
 
 const secrets = {
   NUGET_AUTH_TOKEN: process.env.nugetAuthToken,
@@ -13,9 +12,109 @@ const secrets = {
 }
 
 const templates = {
-  API_GO: 'template-api-go',
-  API_TS: 'template-api-ts',
-  API_CSHARP: 'template-api-csharp'
+  API_GO: {
+    name: 'template-api-go',
+    secrets: [
+
+    ]
+  },
+  API_TS: {
+    name: 'template-api-ts',
+    secrets: [
+      'NPM_TOKEN',
+      'GH_TOKEN'
+    ]
+  },
+  API_CSHARP: {
+    name: 'template-api-csharp',
+    secrets: [
+      'NUGET_AUTH_TOKEN'
+    ]
+  }
+}
+
+function getGameLibraries(game) {
+  return [
+    {
+      template: templates.API_CSHARP,
+      name: `${game}-csharp-game-api`,
+      description: `Game API library for ${game}`,
+      asyncapiFile: `${game}.asyncapi.json`,
+    },
+    {
+      template: templates.API_CSHARP,
+      name: `${game}-csharp-public-api`,
+      description: `C# public API wrapper for ${game}`,
+      asyncapiFile: `${game}_public.asyncapi.json`
+    },
+    {
+      template: templates.API_TS,
+      name: `${game}-ts-public-api`,
+      description: `TypeScript public API wrapper for ${game}`,
+      asyncapiFile: `${game}_public.asyncapi.json`
+    }
+  ]
+}
+const games = {
+  "rust": {
+    website: 'https://gamingapi.org/platform/games/rust',
+    repos: getGameLibraries("rust")
+  },
+
+}
+
+function getCsharpConfigFile(asyncapi_file) {
+  return ` 
+{
+  "ASYNCAPI_FILE": "${asyncapi_file}"
+}`
+}
+
+function getTypeScriptConfigFile(asyncapi_file, repo, repo_description) {
+  return ` 
+{
+  "ASYNCAPI_FILE": "${asyncapi_file}",
+  "REPOSITORY_NAME": "${repo}",
+  "REPOSITORY_DESCRIPTION": "${repo_description}",
+}`
+}
+
+function implodeNewRepository(repo, configFile) {
+  const repoPath = `${__dirname}/repository/${repo}`;
+  writeFileSync(`${repoPath}/customize.json`, configFile);
+  execSync(`cd ${repoPath} && chmod +x ./customize && ./customize`, {
+    stdio: [0, 1, 2], // we need this so node will print the command output
+  });
+}
+
+function pushChanges(repo, commitMessage) {
+  const repoPath = `${__dirname}/repository/${repo}`;
+  execSync(`cd ${repoPath} && git add -A && git commit -a -m"${commitMessage}" && git push https://${accessToken}@github.com/GamingAPI/${repo}.git`, {
+    stdio: [0, 1, 2], // we need this so node will print the command output
+  });
+}
+
+function cloneRepo(repo) {
+  const repoLink = `https://github.com/GamingAPI/${repo}.git`
+  execSync(`git clone ${repoLink} ${__dirname}/repository/${repo}`, {
+    stdio: [0, 1, 2], // we need this so node will print the command output
+  });
+}
+
+function updateRepoWithTemplate(repo, template) {
+  const templateLink = `https://github.com/GamingAPI/${template}/tarball/main`;
+  const cmd = `curl -o ./${template}.tar.gz -LJ ${templateLink} && tar -C ${__dirname}/repository/${repo} --strip=1 -xzvf ${template}.tar.gz `;
+  console.log(cmd);
+  execSync(cmd, {
+    stdio: [0, 1, 2], // we need this so node will print the command output
+  });
+}
+
+function cleanUp(repo) {
+  const repoPath = `${__dirname}/repository/${repo}`;
+  execSync(`rm -rf ${repoPath}`, {
+    stdio: [0, 1, 2], // we need this so node will print the command output
+  });
 }
 
 async function getOrgSecret() {
@@ -27,10 +126,11 @@ async function getOrgSecret() {
     key: response.data.key
   }
 }
+
 /**
  * Encrypt a secret using your public key https://github.com/settings/ssh
  */
-async function setSecret(repo, secret, secretName){
+async function setSecret(repo, secret, secretName) {
   const publicKey = await getOrgSecret();
   // Convert the message and key to Uint8Array's (Buffer implements that interface)
   const messageBytes = Buffer.from(secret);
@@ -51,62 +151,37 @@ async function setSecret(repo, secret, secretName){
   })
 }
 
-function cloneRepo(repo){
-  const repoLink = `https://github.com/GamingAPI/${repo}.git`
-  execSync(`git clone ${repoLink} ${__dirname}/repository/${repo}`, {
-    stdio: [0, 1, 2], // we need this so node will print the command output
-  });
-}
-function getCsharpConfigFile(asyncapi_file){
-  return ` 
-{
-  "ASYNCAPI_FILE": "${asyncapi_file}"
-}`
-}
+async function setupRepo(name, template, description, configFile) {
+  let newRepo = false;
+  let commitMessage = 'refactor: re-add template';
+  try{
+    await octokit.request('GET /repos/{owner}/{repo}', {
+      owner: 'GamingAPI',
+      repo: name
+    });
+  } catch(e) {
+    newRepo = true;
+    commitMessage = 'refactor: implode template';
+    //Repository was not created, lets start from scratch
+    await octokit.request('POST /repos/{template_owner}/{template_repo}/generate', {
+      template_owner: 'GamingAPI',
+      template_repo: template,
+      owner: 'GamingAPI',
+      name,
+      description,
+      include_all_branches: false,
+      'private': false
+    });
+  }
 
-function getTypeScriptConfigFile(asyncapi_file, repo, repo_description){
-  return ` 
-{
-  "ASYNCAPI_FILE": "${asyncapi_file}",
-  "REPOSITORY_NAME": "${repo}",
-  "REPOSITORY_DESCRIPTION": "${repo_description}",
-}`
-}
-function implodeNewRepository(repo, configFile){
-  const repoPath = `${__dirname}/repository/${repo}`; 
-  writeFileSync(`${repoPath}/customize.json`, configFile);
-  execSync(`cd ${repoPath} && chmod +x ./customize && ./customize`, {
-    stdio: [0, 1, 2], // we need this so node will print the command output
-  });
-}
-
-function pushChanges(repo){
-  const repoPath = `${__dirname}/repository/${repo}`;
-  execSync(`cd ${repoPath} && git add -A && git commit -a -m"refactor: implode initial template" && git push https://${accessToken}@github.com/GamingAPI/${repo}.git`, {
-    stdio: [0, 1, 2], // we need this so node will print the command output
-  });
-}
-
-function cleanUp(repo){
-  const repoPath = `${__dirname}/repository/${repo}`;
-  execSync(`rm -rf ${repoPath}`, {
-    stdio: [0, 1, 2], // we need this so node will print the command output
-  });
-}
-
-async function createRepo(name, template, description, configFile){
-  await octokit.request('POST /repos/{template_owner}/{template_repo}/generate', {
-    template_owner: 'GamingAPI',
-    template_repo: template,
-    owner: 'GamingAPI',
-    name,
-    description,
-    include_all_branches: false,
-    'private': false
-  });
   cloneRepo(name);
+  if (!newRepo) {
+    //Repository already exist, time to upgrade it with the new template code
+    console.log(`${name} already exist, updating repo with new template code`);
+    updateRepoWithTemplate(name, template);
+  }
   implodeNewRepository(name, configFile);
-  pushChanges(name);
+  pushChanges(name, commitMessage);
   cleanUp(name);
 }
 
@@ -121,34 +196,34 @@ async function updateRepository(repo, website) {
   });
 }
 
-async function setupCsharpLibrary(repo, description, asyncapiFile, website){
-  const configFile = getCsharpConfigFile(asyncapiFile);
-  await createRepo(repo, templates.API_CSHARP, description, configFile);
-  // Create Nuget token for releases
-  await setSecret(repo, secrets.NUGET_AUTH_TOKEN, 'NUGET_AUTH_TOKEN');
-  // Update repo with some standard meta data
-  await updateRepository(repo, website);
-}
+async function setup() {
 
-async function setupTypeScriptLibrary(repo, description, asyncapiFile, website){
-  const configFile = getTypeScriptConfigFile(asyncapiFile, repo, description);
-  await createRepo(repo, templates.API_TS, description, configFile);
-  // Create Nuget token for releases
-  await setSecret(repo, secrets.NPM_TOKEN, 'NPM_TOKEN');
-  await setSecret(repo, secrets.GH_TOKEN, 'GH_TOKEN');
-  // Update repo with some standard meta data
-  await updateRepository(repo, website);
-}
+  // Setup all relevant stuff for games
+  for (const [game, gameConfig] of Object.entries(games)) {
+    console.log(`Setting up ${game}`);
+    //Setup all repositories
+    for (const repository of gameConfig.repos) {
+      let configFile;
+      if (repository.template.name === 'template-api-csharp') {
+        configFile = getCsharpConfigFile(repository.asyncapiFile);
+      } else if (repository.template.name === 'template-api-ts') {
+        configFile = getTypeScriptConfigFile(repository.asyncapiFile);
+      } else {
+        throw new Error("Template not recognized");
+      }
+      await setupRepo(repository.name, templates.API_TS.name, repository.description, configFile);
 
-async function setupGameApiLibrary(game) {
-  const developerPlatformLink = `https://gamingapi.org/platform/games/${game}`;
-  await setupCsharpLibrary(`${game}-csharp-game-api`, `Game API library for ${game}`, `${game}.asyncapi.json`, developerPlatformLink);
-  await setupCsharpLibrary(`${game}-csharp-public-api`, `C# public API wrapper for ${game}`, `${game}_public.asyncapi.json`, developerPlatformLink);
-  await setupTypeScriptLibrary(`${game}-ts-public-api`, `TypeScript public API wrapper for ${game}`, `${game}_public.asyncapi.json`, developerPlatformLink);
+      // Create Nuget token for releases
+      for (const secret of repository.template.secrets) {
+        if (secrets[secret] !== undefined) {
+          await setSecret(repository.name, secrets[secret], secret);
+        } else {
+          throw new Error("Expected secret not found");
+        }
+      }
+      // Update repo with some standard meta data
+      await updateRepository(repository.name, gameConfig.website);
+    }
+  }
 }
-
-//Setup game api library
-setupGameApiLibrary(newGame);
-//Setup public game API C#
-//Setup public game API TS
-//Setup public game API Go
+setup();
