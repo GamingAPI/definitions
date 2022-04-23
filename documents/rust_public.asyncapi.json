@@ -1,5 +1,5 @@
 {
-    "asyncapi": "2.3.0",
+    "asyncapi": "2.2.0",
     "info": {
         "title": "Rust public API",
         "description": "test",
