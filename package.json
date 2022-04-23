@@ -1,8 +1,9 @@
 {
+  "private": true,
   "scripts": {
     "lint": "spectral lint ./documents/*.asyncapi.json --ruleset ./spectral/.spectral.yaml",
     "bundle": "cd documents && node bundle-documents.js",
-    "setup:game": "newGame=$npm_config_new_game accessToken=$npm_config_access_token nugetAuthToken=$npm_config_nuget_auth_token ghToken=$npm_config_gh_token npmToken=$npm_config_npm_token node scripts/setup/setup_games.js"
+    "setup:game": "accessToken=$npm_config_access_token nugetAuthToken=$npm_config_nuget_auth_token ghToken=$npm_config_gh_token npmToken=$npm_config_npm_token node scripts/setup/setup_games.js"
   },
   "devDependencies": {
     "@asyncapi/bundler": "0.1.0",
