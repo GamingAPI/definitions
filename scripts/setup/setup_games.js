@@ -207,7 +207,7 @@ async function setup() {
       if (repository.template.name === 'template-api-csharp') {
         configFile = getCsharpConfigFile(repository.asyncapiFile);
       } else if (repository.template.name === 'template-api-ts') {
-        configFile = getTypeScriptConfigFile(repository.asyncapiFile);
+        configFile = getTypeScriptConfigFile(repository.asyncapiFile, repository.name, repository.description);
       } else {
         throw new Error("Template not recognized");
       }
