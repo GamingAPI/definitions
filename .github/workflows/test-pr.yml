@@ -11,6 +11,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: PR title MUST follow conventional commits
         uses: amannn/action-semantic-pull-request@v4
         env:
