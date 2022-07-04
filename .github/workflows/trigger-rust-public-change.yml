@@ -1,0 +1,24 @@
+---
+name: Trigger remote code generation for Rust public API
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'bundled/rust_public.asyncapi.json'
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update TS public game API library
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Auto update generated library
+          token: ${{ secrets.GH_TOKEN }}
+          repo: GamingAPI/rust-ts-public-api
+      - name: Update csharp public game API library
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Auto update generated library
+          token: ${{ secrets.GH_TOKEN }}
+          repo: GamingAPI/rust-csharp-public-api

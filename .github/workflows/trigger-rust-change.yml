@@ -1,0 +1,18 @@
+---
+name: Trigger remote code generation for Rust
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'bundled/rust.asyncapi.json'
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update csharp game API library
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Auto update generated library
+          token: ${{ secrets.GH_TOKEN }}
+          repo: GamingAPI/rust-csharp-game-api
