@@ -3,4 +3,4 @@
 	"payload": {
 	  "$ref": "../schemas/ServerPlayerResourceGathered.json"
 	}
-  }
+}

@@ -3,7 +3,11 @@
     "info": {
         "title": "Rust public API",
         "description": "test",
-        "version": "0.2.0"
+        "version": "0.2.0",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
     },
     "servers": {
         "production": {
@@ -23,6 +27,7 @@
             },
             "publish": {
                 "operationId": "ServerStarted",
+                "description": "You can consume this event to learn when the server was started",
                 "message": {
                     "$ref": "./components/messages/ServerStarted.json"
                 }
@@ -40,6 +45,7 @@
             },
             "publish": {
                 "operationId": "PlayerChatted",
+                "description": "You can consume this event to learn when a player used the in-game chat",
                 "message": {
                     "$ref": "./components/messages/PlayerChatted.json"
                 }

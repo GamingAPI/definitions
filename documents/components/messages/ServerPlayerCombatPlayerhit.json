@@ -3,4 +3,4 @@
 	"payload": {
 	  "$ref": "../schemas/ServerPlayerCombatPlayerhit.json"
 	}
-  }
+}
