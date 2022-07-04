@@ -2,7 +2,9 @@
   "private": true,
   "scripts": {
     "lint": "spectral lint ./documents/*.asyncapi.json --ruleset ./spectral/.spectral.yaml",
-    "bundle": "cd documents && node bundle-documents.js",
+    "bundle": "npm run bundle:rust_public && npm run bundle:rust",
+    "bundle:rust_public": "cd documents && asyncFile=rust_public node bundle-documents.js",
+    "bundle:rust": "cd documents && asyncFile=rust node bundle-documents.js",
     "setup:game": "accessToken=$npm_config_access_token nugetAuthToken=$npm_config_nuget_auth_token ghToken=$npm_config_gh_token npmToken=$npm_config_npm_token node scripts/setup/setup_games.js"
   },
   "devDependencies": {

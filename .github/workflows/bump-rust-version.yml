@@ -36,7 +36,7 @@ jobs:
         run: npm install
       - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Bundle documents
-        run: npm run bundle
+        run: npm run bundle:rust
       - if: steps.version_bump.outputs.wasBumped == 'true'
         name: Create Pull Request with bumped version
         uses: peter-evans/create-pull-request@v3
