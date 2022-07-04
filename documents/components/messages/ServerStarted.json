@@ -1,6 +1,6 @@
 {
 	"name": "ServerStarted",
 	"payload": {
-	  "type": "null"
+	  "$ref": "../schemas/ServerStarted.json"
 	}
 }

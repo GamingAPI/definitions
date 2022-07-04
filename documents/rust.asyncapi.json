@@ -3,7 +3,11 @@
     "info": {
         "title": "Rust server",
         "description": "test",
-        "version": "0.7.0"
+        "version": "0.8.0",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
     },
     "servers": {
         "production": {
@@ -23,6 +27,7 @@
             },
             "subscribe": {
                 "operationId": "ServerStarted",
+                "description": "The Rust server can publish to this channel when the server has started",
                 "message": {
                     "$ref": "./components/messages/ServerStarted.json"
                 }
@@ -39,6 +44,7 @@
                 }
             },
             "subscribe": {
+                "description": "The Rust server can publish to this channel when a player uses the in-game chat",
                 "operationId": "PlayerChatted",
                 "message": {
                     "$ref": "./components/messages/PlayerChatted.json"

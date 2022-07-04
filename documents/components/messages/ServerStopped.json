@@ -1,6 +1,6 @@
 {
 	"name": "ServerStopped",
 	"payload": {
-	  "type": "null"
+	  "$ref": "../schemas/ServerStopped.json"
 	}
 }

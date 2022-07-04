@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"$id": "ServerStopped",
+	"required": [
+	  "timestamp"
+	],
+	"properties": {
+    "timestamp": {
+      "type": "string",
+      "example": "2016-08-29T09:12:33.001Z"
+    }
+	}
+}

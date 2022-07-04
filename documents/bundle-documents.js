@@ -2,6 +2,7 @@
 const bundler = require('@asyncapi/bundler');
 const fs = require('fs');
 const path = require('path');
+const asyncFile = process.env.asyncFile;
 
 async function bundleDocuments(filePath, outputFile) {
   const fullPath = path.resolve(filePath);
@@ -13,5 +14,4 @@ async function bundleDocuments(filePath, outputFile) {
   fs.writeFileSync(outputFile, bundledDocument.string());
   console.log(`Done bundling ${fullPath}`);
 };
-bundleDocuments('./rust.asyncapi.json', '../bundled/rust.asyncapi.json');
-bundleDocuments('./rust_public.asyncapi.json', '../bundled/rust_public.asyncapi.json');
+bundleDocuments(`./${asyncFile}.asyncapi.json`, `../bundled/${asyncFile}.asyncapi.json`);
