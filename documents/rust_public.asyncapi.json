@@ -42,6 +42,7 @@
             },
             "publish": {
                 "operationId": "ServerStopped",
+                "description": "You can consume this event to learn when the server was stopped",
                 "message": {
                     "$ref": "./components/messages/ServerStopped.json"
                 }
