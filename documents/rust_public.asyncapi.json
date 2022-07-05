@@ -33,21 +33,6 @@
                 }
             }
         },
-        "v0/rust/servers/{server_id}/events/stopped": {
-            "description": "Channel for the API to process for when a server has stopped",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                }
-            },
-            "publish": {
-                "operationId": "ServerStopped",
-                "description": "You can consume this event to learn when the server was stopped",
-                "message": {
-                    "$ref": "./components/messages/ServerStopped.json"
-                }
-            }
-        },
         "v0/rust/servers/{server_id}/events/player/{steam_id}/chatted": {
             "description": "Event for when a player used the chat",
             "parameters": {
