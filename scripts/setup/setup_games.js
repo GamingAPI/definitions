@@ -97,9 +97,14 @@ function implodeNewRepository(repo, configFile) {
 
 function pushChanges(repo, commitMessage) {
   const repoPath = `${__dirname}/repository/${repo}`;
-  execSync(`cd ${repoPath} && git add -A && git commit -a -m"${commitMessage}" && git push https://${accessToken}@github.com/GamingAPI/${repo}.git`, {
-    stdio: [0, 1, 2], // we need this so node will print the command output
-  });
+  try {
+    execSync(`cd ${repoPath} && git add -A && git commit -a -m"${commitMessage}" && git push https://${accessToken}@github.com/GamingAPI/${repo}.git`, {
+      stdio: [0, 1, 2], // we need this so node will print the command output
+    });
+  } catch(e) {
+    console.log(`Nothing to commit for ${repo}`);
+    console.error(e);
+  }
 }
 
 function cloneRepo(repo) {
@@ -223,7 +228,7 @@ async function setup() {
       // Create Nuget token for releases
       for (const secret of repository.template.secrets) {
         if (secrets[secret] !== undefined) {
-          await setSecret(repository.name, secrets[secret], secret);
+          //await setSecret(repository.name, secrets[secret], secret);
         } else {
           throw new Error("Expected secret not found");
         }
