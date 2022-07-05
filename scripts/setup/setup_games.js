@@ -2,15 +2,19 @@ const { Octokit } = require("octokit");
 const { execSync } = require('child_process');
 const libsodium = require('libsodium-wrappers');
 const { writeFileSync } = require("fs");
-const accessToken = process.env.accessToken;
+const accessToken = process.env.ghToken;
 const octokit = new Octokit({ auth: accessToken });
 
 const secrets = {
   NUGET_AUTH_TOKEN: process.env.nugetAuthToken,
-  GH_TOKEN: process.env.ghToken,
+  GH_TOKEN: accessToken,
   NPM_TOKEN: process.env.npmToken
 }
-
+function toPascalCase(s) {
+  return s.replace(/(\w)(\w*)/g, function(g0,g1,g2){
+    return g1.toUpperCase() + g2.toLowerCase();
+  });
+}
 const templates = {
   API_GO: {
     name: 'template-api-go',
@@ -38,12 +42,14 @@ function getGameLibraries(game) {
     {
       template: templates.API_CSHARP,
       name: `${game}-csharp-game-api`,
+      projectName: `${toPascalCase(game)}GameAPI`,
       description: `Game API library for ${game}`,
       asyncapiFile: `${game}.asyncapi.json`,
     },
     {
       template: templates.API_CSHARP,
       name: `${game}-csharp-public-api`,
+      projectName: `${toPascalCase(game)}PublicAPI`,
       description: `C# public API wrapper for ${game}`,
       asyncapiFile: `${game}_public.asyncapi.json`
     },
@@ -63,10 +69,12 @@ const games = {
 
 }
 
-function getCsharpConfigFile(asyncapi_file) {
+function getCsharpConfigFile(asyncapi_file, library_name, repository_url) {
   return ` 
 {
-  "ASYNCAPI_FILE": "${asyncapi_file}"
+  "ASYNCAPI_FILE": "${asyncapi_file}",
+  "LIBRARY_NAME": "${library_name}",
+  "REPOSITORY_URL": "${repository_url}"
 }`
 }
 
@@ -104,7 +112,6 @@ function cloneRepo(repo) {
 function updateRepoWithTemplate(repo, template) {
   const templateLink = `https://github.com/GamingAPI/${template}/tarball/main`;
   const cmd = `curl -o ./${template}.tar.gz -LJ ${templateLink} && tar -C ${__dirname}/repository/${repo} --strip=1 -xzvf ${template}.tar.gz `;
-  console.log(cmd);
   execSync(cmd, {
     stdio: [0, 1, 2], // we need this so node will print the command output
   });
@@ -205,13 +212,13 @@ async function setup() {
     for (const repository of gameConfig.repos) {
       let configFile;
       if (repository.template.name === 'template-api-csharp') {
-        configFile = getCsharpConfigFile(repository.asyncapiFile);
+        configFile = getCsharpConfigFile(repository.asyncapiFile, repository.projectName, `https://github.com/GamingAPI/${repository.name}.git`);
       } else if (repository.template.name === 'template-api-ts') {
         configFile = getTypeScriptConfigFile(repository.asyncapiFile, repository.name, repository.description);
       } else {
         throw new Error("Template not recognized");
       }
-      await setupRepo(repository.name, templates.API_TS.name, repository.description, configFile);
+      await setupRepo(repository.name, repository.template.name, repository.description, configFile);
 
       // Create Nuget token for releases
       for (const secret of repository.template.secrets) {
