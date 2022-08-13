@@ -26,10 +26,10 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: '${{ secrets.GH_TOKEN }}'
-          commit-message: 'feat: convert AsyncAPI documents to newest AsyncAPI version'
+          commit-message: 'chore: convert AsyncAPI documents to newest AsyncAPI version'
           committer: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
           author: '${{env.GH_USER}} ${{env.GH_EMAIL}}'
-          title: 'feat: convert AsyncAPI documents to newest spec version'
+          title: 'chore: convert AsyncAPI documents to newest spec version'
           body: Update all AsyncAPI documents to the newest spec version
           branch: 'convert/asyncapi'
 
