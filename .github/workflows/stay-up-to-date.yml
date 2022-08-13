@@ -19,7 +19,8 @@ jobs:
       - name: Install converter
         run: npm install -g @asyncapi/cli
       - name: Convert Rust AsyncAPI file
-        run: asyncapi convert ./documents/rust.asyncapi.json -o ./documents/rust.asyncapi.json
+        run: asyncapi convert ./documents/rust.asyncapi.json -o ./documents/rust.asyncapi_copy.json
+      - run: mv ./documents/rust.asyncapi_copy.json ./documents/rust.asyncapi.json
       - name: Convert Rust public AsyncAPI file
         run: asyncapi convert ./documents/rust_public.asyncapi.json -o ./documents/rust_public.asyncapi.json
       - name: Create Pull Request with converted documents
