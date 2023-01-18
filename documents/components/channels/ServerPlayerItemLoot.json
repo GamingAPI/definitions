@@ -1,0 +1,14 @@
+{
+	"description": "Channel for the API to process for when a player loots an item ingame",
+	"parameters": {
+		"server_id": {
+			"$ref": "./components/parameters.json#/server_id"
+		},
+		"steam_id": {
+			"$ref": "./components/parameters.json#/steam_id"
+		},
+		"item_id": {
+			"$ref": "./components/parameters.json#/item_id"
+		}
+	}
+}

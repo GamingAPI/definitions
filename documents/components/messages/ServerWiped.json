@@ -1,6 +1,6 @@
 {
 	"name": "ServerWiped",
 	"payload": {
-	  "type": "null"
+	  "type": "object"
 	}
 }

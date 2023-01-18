@@ -9,7 +9,6 @@ rules:
   asyncapi-parameter-description: error
   asyncapi-operation-operationId: error
   asyncapi-tag-description: error
-
   asyncapi-channel-must-have-version:
     given: "$.channels"
     description: 'Channel MUST have version number included in the topic. Example:
@@ -76,7 +75,18 @@ rules:
       function: payload-with-no-additional-properties-unless-map
   asyncapi-message-payload-must-have-root-level-object:
     description: Message payloads must at the root be an object
-    given: $.channels.[*][subscribe,publish].message..payload
+    given: $.channels.[*][subscribe,publish].message.payload
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            type:
+              const: "object"
+  asyncapi-nats-jetstream-name:
+    description: A JetStream stream, consumer, and account names currently have certain limitations
+    given: $.channels.[*].x-nats-stream
     severity: error
     then:
       function: schema

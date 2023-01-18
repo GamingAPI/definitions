@@ -9,7 +9,6 @@
   "properties": {
     "hit_timestamp": {
       "type": "string",
-      
       "example": "2016-08-29T09:12:33.001Z"
     },
     "player_hit": {

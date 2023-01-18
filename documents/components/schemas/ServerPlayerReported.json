@@ -20,7 +20,7 @@
 		"message": {
 			"type": "string"
 		},
-		"reportedType": {
+		"reported_type": {
 			"type": "string"
 		},
 		"timestamp": {

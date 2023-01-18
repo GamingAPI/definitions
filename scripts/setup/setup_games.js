@@ -3,6 +3,8 @@ const { execSync } = require('child_process');
 const libsodium = require('libsodium-wrappers');
 const games = require('../../games');
 const { writeFileSync } = require("fs");
+const { getCsharpConfigFile } = require("./setup_csharp");
+const { getTypeScriptConfigFile } = require("./setup_typescript");
 const accessToken = process.env.ghToken;
 const octokit = new Octokit({ auth: accessToken });
 
@@ -10,24 +12,6 @@ const secrets = {
   NUGET_AUTH_TOKEN: process.env.nugetAuthToken,
   GH_TOKEN: accessToken,
   NPM_TOKEN: process.env.npmToken
-}
-
-function getCsharpConfigFile(asyncapi_file, library_name, repository_url) {
-  return ` 
-{
-  "ASYNCAPI_FILE": "${asyncapi_file}",
-  "LIBRARY_NAME": "${library_name}",
-  "REPOSITORY_URL": "${repository_url}"
-}`
-}
-
-function getTypeScriptConfigFile(asyncapi_file, repo, repo_description) {
-  return ` 
-{
-  "ASYNCAPI_FILE": "${asyncapi_file}",
-  "REPOSITORY_NAME": "${repo}",
-  "REPOSITORY_DESCRIPTION": "${repo_description}",
-}`
 }
 
 function implodeNewRepository(repo, configFile) {

@@ -1,0 +1,11 @@
+{
+	"description": "Channel for the API to process for when a player is reported",
+	"parameters": {
+		"server_id": {
+			"$ref": "./components/parameters.json#/server_id"
+		},
+		"steam_id": {
+			"$ref": "./components/parameters.json#/steam_id"
+		}
+	}
+}

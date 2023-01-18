@@ -1,6 +1,6 @@
 {
 	"name": "BanPlayer",
 	"payload": {
-	  "type": "null"
+	  "type": "object"
 	}
 }

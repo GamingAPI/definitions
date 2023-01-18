@@ -6,7 +6,7 @@
     "hit_area_id",
     "hit_distance",
     "hit_damage",
-    "isKill",
+    "is_kill",
     "victim",
     "attacker"
   ],
@@ -20,7 +20,7 @@
     "hit_damage": {
       "type": "number"
     },
-    "isKill": {
+    "is_kill": {
       "type": "boolean"
     },
     "victim": {

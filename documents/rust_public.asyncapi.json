@@ -19,11 +19,8 @@
     "defaultContentType": "application/json",
     "channels": {
         "v0/rust/servers/{server_id}/events/started": {
-            "description": "Channel for the API to process for when a server has started",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerStarted.json"
             },
             "publish": {
                 "operationId": "ServerStarted",
@@ -34,11 +31,8 @@
             }
         },
         "v0/rust/servers/{server_id}/events/stopped": {
-            "description": "Channel for the API to process for when a server has stopped",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerStopped.json"
             },
             "publish": {
                 "operationId": "ServerStopped",
@@ -49,14 +43,8 @@
             }
         },
         "v0/rust/servers/{server_id}/events/player/{steam_id}/chatted": {
-            "description": "Event for when a player used the chat",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/PlayerChatted.json"
             },
             "publish": {
                 "operationId": "PlayerChatted",
@@ -67,11 +55,8 @@
             }
         },
         "v0/rust/servers/{server_id}/events/wiped": {
-            "description": "Channel for the API to process when a server has just wiped",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerWiped.json"
             },
             "publish": {
                 "operationId": "ServerWiped",
@@ -81,14 +66,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/connected": {
-            "description": "Channel for the API to process for when a player connects to a server",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerConnected.json"
             },
             "publish": {
                 "operationId": "ServerPlayerConnected",
@@ -98,14 +77,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/disconnected": {
-            "description": "Channel for the API to process for when a player disconnects from a server",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerDisconnected.json"
             },
             "publish": {
                 "operationId": "ServerPlayerDisconnected",
@@ -115,14 +88,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/gatheredResources": {
-            "description": "Channel for the API to process for when a player gathers some resources",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerResourceGathered.json"
             },
             "publish": {
                 "operationId": "ServerPlayerResourceGathered",
@@ -132,14 +99,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/respawned": {
-            "description": "Channel for the API to process for when a player respawn",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerRespawned.json"
             },
             "publish": {
                 "operationId": "ServerPlayerRespawned",
@@ -149,14 +110,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/combat/hit": {
-            "description": "Channel for the API to process for when a player hits another player",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerCombatPlayerhit.json"
             },
             "publish": {
                 "operationId": "ServerPlayerCombatPlayerhit",
@@ -166,17 +121,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/pickup": {
-            "description": "Channel for the API to process for when a player pickup items ingame",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                },
-                "item_id": {
-                    "$ref": "./components/parameters.json#/item_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerItemPickup.json"
             },
             "publish": {
                 "operationId": "ServerPlayerItemPickup",
@@ -186,17 +132,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/loot": {
-            "description": "Channel for the API to process for when a player loots an item ingame",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                },
-                "item_id": {
-                    "$ref": "./components/parameters.json#/item_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerItemLoot.json"
             },
             "publish": {
                 "operationId": "ServerPlayerItemLoot",
@@ -206,17 +143,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/crafted": {
-            "description": "Channel for the API to process for when a player crafts items ingame",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                },
-                "item_id": {
-                    "$ref": "./components/parameters.json#/item_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerItemCrafted.json"
             },
             "publish": {
                 "operationId": "ServerPlayerItemCrafted",
@@ -226,11 +154,8 @@
             }
         },
         "v0/rust/servers/{server_id}/events/command": {
-            "description": "Channel for the API to process for when a server command is run",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerCommand.json"
             },
             "publish": {
                 "operationId": "ServerCommand",
@@ -240,14 +165,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/reported": {
-            "description": "Channel for the API to process for when a player is reported",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerReported.json"
             },
             "publish": {
                 "operationId": "ServerPlayerReported",
@@ -257,14 +176,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/unbanned": {
-            "description": "Channel for notifying a server unbanned a player",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerUnbanned.json"
             },
             "publish": {
                 "operationId": "ServerPlayerUnbanned",
@@ -274,14 +187,8 @@
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/banned": {
-            "description": "Channel for notifying a server banned a player",
-            "parameters": {
-                "server_id": {
-                    "$ref": "./components/parameters.json#/server_id"
-                },
-                "steam_id": {
-                    "$ref": "./components/parameters.json#/steam_id"
-                }
+            "traits": {
+                "$ref": "./components/channels/ServerPlayerBanned.json"
             },
             "publish": {
                 "operationId": "ServerPlayerBanned",

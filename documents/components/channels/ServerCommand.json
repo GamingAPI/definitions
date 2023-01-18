@@ -1,0 +1,8 @@
+{
+	"description": "Channel for the API to process for when a server command is run",
+	"parameters": {
+		"server_id": {
+			"$ref": "./components/parameters.json#/server_id"
+		}
+	}
+}
