@@ -16,7 +16,8 @@
 			"type": "string"
 		},
 		"duration": {
-			"type": "string"
+			"type": "string",
+			"description": "The duration in seconds (s) that the player has been banned"
 		},
 		"timestamp": {
 			"type": "string",
