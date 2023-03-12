@@ -1,6 +1,0 @@
-{
-	"name": "ServerPlayerItemPickup",
-	"payload": {
-	  "$ref": "../schemas/ServerPlayerItemPickup.json"
-	}
-}

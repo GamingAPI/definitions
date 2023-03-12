@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerDisconnected",
+	"payload": {
+	  "$ref": "../../schemas/rust/ServerPlayerDisconnected.json"
+	}
+}

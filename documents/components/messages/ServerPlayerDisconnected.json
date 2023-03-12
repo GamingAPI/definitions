@@ -1,6 +1,0 @@
-{
-	"name": "ServerPlayerDisconnected",
-	"payload": {
-	  "$ref": "../schemas/ServerPlayerDisconnected.json"
-	}
-}

@@ -1,0 +1,11 @@
+{
+	"description": "Channel for notifying a server unbanned a player",
+	"parameters": {
+		"server_id": {
+			"$ref": "../../parameters.json#/server_id"
+		},
+		"steam_id": {
+			"$ref": "../../parameters.json#/steam_id"
+		}
+	}
+}

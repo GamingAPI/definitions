@@ -1,6 +1,0 @@
-{
-	"name": "ServerPlayerItemCrafted",
-	"payload": {
-	  "$ref": "../schemas/ServerPlayerItemCrafted.json"
-	}
-}

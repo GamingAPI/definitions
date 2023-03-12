@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerItemLoot",
+	"payload": {
+	  "$ref": "../../schemas/rust/ServerPlayerItemLoot.json"
+	}
+}

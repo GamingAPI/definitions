@@ -1,5 +1,5 @@
 {
-    "asyncapi": "2.2.0",
+    "asyncapi": "2.6.0",
     "info": {
         "title": "Rust public API",
         "description": "test",
@@ -20,180 +20,193 @@
     "channels": {
         "v0/rust/servers/{server_id}/events/started": {
             "traits": {
-                "$ref": "./components/channels/ServerStarted.json"
+                "$ref": "./components/channels/rust/ServerStarted.json"
             },
             "publish": {
                 "operationId": "ServerStarted",
                 "description": "You can consume this event to learn when the server was started",
                 "message": {
-                    "$ref": "./components/messages/ServerStarted.json"
+                    "$ref": "./components/messages/rust/ServerStarted.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/events/stopped": {
             "traits": {
-                "$ref": "./components/channels/ServerStopped.json"
+                "$ref": "./components/channels/rust/ServerStopped.json"
             },
             "publish": {
                 "operationId": "ServerStopped",
                 "description": "You can consume this event to learn when the server was stopped",
                 "message": {
-                    "$ref": "./components/messages/ServerStopped.json"
+                    "$ref": "./components/messages/rust/ServerStopped.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/events/player/{steam_id}/chatted": {
             "traits": {
-                "$ref": "./components/channels/PlayerChatted.json"
+                "$ref": "./components/channels/rust/PlayerChatted.json"
             },
             "publish": {
                 "operationId": "PlayerChatted",
                 "description": "You can consume this event to learn when a player used the in-game chat",
                 "message": {
-                    "$ref": "./components/messages/PlayerChatted.json"
+                    "$ref": "./components/messages/rust/PlayerChatted.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/events/wiped": {
             "traits": {
-                "$ref": "./components/channels/ServerWiped.json"
+                "$ref": "./components/channels/rust/ServerWiped.json"
             },
             "publish": {
                 "operationId": "ServerWiped",
+                "description": "You can consume this event to learn when the server wiped",
                 "message": {
-                    "$ref": "./components/messages/ServerWiped.json"
+                    "$ref": "./components/messages/rust/ServerWiped.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/connected": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerConnected.json"
+                "$ref": "./components/channels/rust/ServerPlayerConnected.json"
             },
             "publish": {
                 "operationId": "ServerPlayerConnected",
+                "description": "You can consume this event to learn when a player has connected",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerConnected.json"
+                    "$ref": "./components/messages/rust/ServerPlayerConnected.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/disconnected": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerDisconnected.json"
+                "$ref": "./components/channels/rust/ServerPlayerDisconnected.json"
             },
             "publish": {
                 "operationId": "ServerPlayerDisconnected",
+                "description": "You can consume this event to learn when a player has disconnected",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerDisconnected.json"
+                    "$ref": "./components/messages/rust/ServerPlayerDisconnected.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/gatheredResources": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerResourceGathered.json"
+                "$ref": "./components/channels/rust/ServerPlayerResourceGathered.json"
             },
             "publish": {
                 "operationId": "ServerPlayerResourceGathered",
+                "description": "You can consume this event to learn when a player has gathered some resources",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerResourceGathered.json"
+                    "$ref": "./components/messages/rust/ServerPlayerResourceGathered.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/respawned": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerRespawned.json"
+                "$ref": "./components/channels/rust/ServerPlayerRespawned.json"
             },
             "publish": {
                 "operationId": "ServerPlayerRespawned",
+                "description": "You can consume this event to learn when a player has respawned",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerRespawned.json"
+                    "$ref": "./components/messages/rust/ServerPlayerRespawned.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/combat/hit": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerCombatPlayerhit.json"
+                "$ref": "./components/channels/rust/ServerPlayerCombatPlayerhit.json"
             },
             "publish": {
                 "operationId": "ServerPlayerCombatPlayerhit",
+                "description": "You can consume this event to learn when a player attacked another player",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerCombatPlayerhit.json"
+                    "$ref": "./components/messages/rust/ServerPlayerCombatPlayerhit.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/pickup": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerItemPickup.json"
+                "$ref": "./components/channels/rust/ServerPlayerItemPickup.json"
             },
             "publish": {
                 "operationId": "ServerPlayerItemPickup",
+                "description": "You can consume this event to learn when a player picked up an item",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerItemPickup.json"
+                    "$ref": "./components/messages/rust/ServerPlayerItemPickup.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/loot": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerItemLoot.json"
+                "$ref": "./components/channels/rust/ServerPlayerItemLoot.json"
             },
             "publish": {
                 "operationId": "ServerPlayerItemLoot",
+                "description": "You can consume this event to learn when a player looted an item",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerItemLoot.json"
+                    "$ref": "./components/messages/rust/ServerPlayerItemLoot.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/crafted": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerItemCrafted.json"
+                "$ref": "./components/channels/rust/ServerPlayerItemCrafted.json"
             },
             "publish": {
                 "operationId": "ServerPlayerItemCrafted",
+                "description": "You can consume this event to learn when a player crafted an item",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerItemCrafted.json"
+                    "$ref": "./components/messages/rust/ServerPlayerItemCrafted.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/events/command": {
             "traits": {
-                "$ref": "./components/channels/ServerCommand.json"
+                "$ref": "./components/channels/rust/ServerCommand.json"
             },
             "publish": {
                 "operationId": "ServerCommand",
+                "description": "You can consume this event to learn when the server runs a command",
                 "message": {
-                    "$ref": "./components/messages/ServerCommand.json"
+                    "$ref": "./components/messages/rust/ServerCommand.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/reported": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerReported.json"
+                "$ref": "./components/channels/rust/ServerPlayerReported.json"
             },
             "publish": {
                 "operationId": "ServerPlayerReported",
+                "description": "You can consume this event to learn when a player is reported",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerReported.json"
+                    "$ref": "./components/messages/rust/ServerPlayerReported.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/unbanned": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerUnbanned.json"
+                "$ref": "./components/channels/rust/ServerPlayerUnbanned.json"
             },
             "publish": {
                 "operationId": "ServerPlayerUnbanned",
+                "description": "You can consume this event to learn when a player is unbanned",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerUnbanned.json"
+                    "$ref": "./components/messages/rust/ServerPlayerUnbanned.json"
                 }
             }
         },
         "v0/rust/servers/{server_id}/players/{steam_id}/events/banned": {
             "traits": {
-                "$ref": "./components/channels/ServerPlayerBanned.json"
+                "$ref": "./components/channels/rust/ServerPlayerBanned.json"
             },
             "publish": {
                 "operationId": "ServerPlayerBanned",
+                "description": "You can consume this event to learn when a player is banned",
                 "message": {
-                    "$ref": "./components/messages/ServerPlayerBanned.json"
+                    "$ref": "./components/messages/rust/ServerPlayerBanned.json"
                 }
             }
         }

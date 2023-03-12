@@ -1,6 +1,0 @@
-{
-	"name": "ServerCommand",
-	"payload": {
-	  "$ref": "../schemas/ServerCommand.json"
-	}
-}

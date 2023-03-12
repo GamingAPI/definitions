@@ -1,0 +1,14 @@
+{
+	"description": "Channel for the API to process for when a player respawn",
+	"parameters": {
+		"server_id": {
+			"$ref": "../../parameters.json#/server_id"
+		},
+		"steam_id": {
+			"$ref": "../../parameters.json#/steam_id"
+		}
+	},
+	"x-code-template": {
+		"stream": "test"
+	}
+}

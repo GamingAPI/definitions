@@ -1,0 +1,6 @@
+{
+	"name": "ServerCommand",
+	"payload": {
+	  "$ref": "../../schemas/rust/ServerCommand.json"
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"name": "ServerStopped",
+	"payload": {
+	  "$ref": "../../schemas/rust/ServerStopped.json"
+	}
+}

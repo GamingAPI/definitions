@@ -1,6 +1,0 @@
-{
-	"name": "ServerPlayerRespawned",
-	"payload": {
-	  "$ref": "../schemas/ServerPlayerRespawned.json"
-	}
-}

@@ -1,0 +1,6 @@
+{
+	"name": "ServerPlayerUnbanned",
+	"payload": {
+	  "$ref": "../../schemas/rust/ServerPlayerUnbanned.json"
+	}
+}

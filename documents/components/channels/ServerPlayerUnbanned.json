@@ -1,6 +1,0 @@
-{
-	"name": "ServerPlayerUnbanned",
-	"payload": {
-	  "$ref": "../schemas/ServerPlayerUnbanned.json"
-	}
-}
