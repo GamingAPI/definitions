@@ -1,214 +1,214 @@
 {
-    "asyncapi": "2.6.0",
-    "info": {
-        "title": "Rust server",
-        "description": "test",
-        "version": "0.9.0",
-        "license": {
-            "name": "Apache 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-        }
-    },
-    "servers": {
-        "production": {
-            "url": "148.251.43.103:4222",
-            "protocol": "nats",
-            "description": "GamingAPI NATS production broker"
-        }
-    },
-    "defaultContentType": "application/json",
-    "channels": {
-        "v0/rust/servers/{server_id}/events/started": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerStarted.json"
-            },
-            "subscribe": {
-                "operationId": "ServerStarted",
-                "description": "The Rust server can publish to this channel when the server has started",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerStarted.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/events/stopped": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerStopped.json"
-            },
-            "subscribe": {
-                "operationId": "ServerStopped",
-                "description": "You can consume this event to learn when the server was stopped",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerStopped.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/events/player/{steam_id}/chatted": {
-            "traits": {
-                "$ref": "./components/channels/rust/PlayerChatted.json"
-            },
-            "subscribe": {
-                "description": "The Rust server can publish to this channel when a player uses the in-game chat",
-                "operationId": "PlayerChatted",
-                "message": {
-                    "$ref": "./components/messages/rust/PlayerChatted.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/events/wiped": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerWiped.json"
-            },
-            "subscribe": {
-                "operationId": "ServerWiped",
-                "description": "The Rust server can publish to this channel when the server wiped",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerWiped.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/connected": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerConnected.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerConnected",
-                "description": "The Rust server can publish to this channel when a player connected",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerConnected.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/disconnected": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerDisconnected.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerDisconnected",
-                "description": "The Rust server can publish to this channel when a player disconnected",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerDisconnected.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/gatheredResources": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerResourceGathered.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerResourceGathered",
-                "description": "The Rust server can publish to this channel when a player gathered some resources",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerResourceGathered.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/respawned": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerRespawned.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerRespawned",
-                "description": "The Rust server can publish to this channel when a player respawned",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerRespawned.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/combat/hit": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerCombatPlayerhit.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerCombatPlayerhit",
-                "description": "The Rust server can publish to this channel when a player hit another player",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerCombatPlayerhit.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/pickup": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerItemPickup.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerItemPickup",
-                "description": "The Rust server can publish to this channel when a player picks up an item",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerItemPickup.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/loot": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerItemLoot.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerItemLoot",
-                "description": "The Rust server can publish to this channel when a player loots an item",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerItemLoot.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/crafted": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerItemCrafted.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerItemCrafted",
-                "description": "The Rust server can publish to this channel when a player crafted an item",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerItemCrafted.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/events/command": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerCommand.json"
-            },
-            "subscribe": {
-                "operationId": "ServerCommand",
-                "description": "The Rust server can publish to this channel when the server ran a command",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerCommand.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/reported": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerReported.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerReported",
-                "description": "The Rust server can publish to this channel when a player gets reported",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerReported.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/unbanned": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerUnbanned.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerUnbanned",
-                "description": "The Rust server can publish to this channel when a player gets unbanned",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerUnbanned.json"
-                }
-            }
-        },
-        "v0/rust/servers/{server_id}/players/{steam_id}/events/banned": {
-            "traits": {
-                "$ref": "./components/channels/rust/ServerPlayerBanned.json"
-            },
-            "subscribe": {
-                "operationId": "ServerPlayerBanned",
-                "description": "The Rust server can publish to this channel when a player gets banned",
-                "message": {
-                    "$ref": "./components/messages/rust/ServerPlayerBanned.json"
-                }
-            }
-        }
-    }
+	"asyncapi": "2.6.0",
+	"info": {
+		"title": "Rust server",
+		"description": "This is the AsyncAPI document that defines the Rust server and it's operations",
+		"version": "0.9.0",
+		"license": {
+			"name": "Apache 2.0",
+			"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"servers": {
+		"production": {
+			"url": "148.251.43.103:4222",
+			"protocol": "nats",
+			"description": "GamingAPI NATS production broker"
+		}
+	},
+	"defaultContentType": "application/json",
+	"channels": {
+		"v0/rust/servers/{server_id}/events/started": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerStarted.json"
+			},
+			"subscribe": {
+				"operationId": "ServerStarted",
+				"description": "The Rust server can publish to this channel when the server has started",
+				"message": {
+					"$ref": "./components/messages/rust/ServerStarted.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/events/stopped": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerStopped.json"
+			},
+			"subscribe": {
+				"operationId": "ServerStopped",
+				"description": "You can consume this event to learn when the server was stopped",
+				"message": {
+					"$ref": "./components/messages/rust/ServerStopped.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/events/player/{steam_id}/chatted": {
+			"traits": {
+				"$ref": "./components/channels/rust/PlayerChatted.json"
+			},
+			"subscribe": {
+				"operationId": "PlayerChatted",
+				"description": "The Rust server can publish to this channel when a player uses the in-game chat",
+				"message": {
+					"$ref": "./components/messages/rust/PlayerChatted.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/events/wiped": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerWiped.json"
+			},
+			"subscribe": {
+				"operationId": "ServerWiped",
+				"description": "The Rust server can publish to this channel when the server wiped",
+				"message": {
+					"$ref": "./components/messages/rust/ServerWiped.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/connected": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerConnected.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerConnected",
+				"description": "The Rust server can publish to this channel when a player connected",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerConnected.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/disconnected": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerDisconnected.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerDisconnected",
+				"description": "The Rust server can publish to this channel when a player disconnected",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerDisconnected.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/gathered/resources": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerResourceGathered.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerResourceGathered",
+				"description": "The Rust server can publish to this channel when a player gathered some resources",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerResourceGathered.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/respawned": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerRespawned.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerRespawned",
+				"description": "The Rust server can publish to this channel when a player respawned",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerRespawned.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/combat/hit": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerCombatPlayerhit.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerCombatPlayerhit",
+				"description": "The Rust server can publish to this channel when a player hit another player",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerCombatPlayerhit.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/pickup": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerItemPickup.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerItemPickup",
+				"description": "The Rust server can publish to this channel when a player picks up an item",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerItemPickup.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/loot": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerItemLoot.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerItemLoot",
+				"description": "The Rust server can publish to this channel when a player loots an item",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerItemLoot.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/items/{item_id}/crafted": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerItemCrafted.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerItemCrafted",
+				"description": "The Rust server can publish to this channel when a player crafted an item",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerItemCrafted.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/events/command": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerCommand.json"
+			},
+			"subscribe": {
+				"operationId": "ServerCommand",
+				"description": "The Rust server can publish to this channel when the server ran a command",
+				"message": {
+					"$ref": "./components/messages/rust/ServerCommand.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/reported": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerReported.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerReported",
+				"description": "The Rust server can publish to this channel when a player gets reported",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerReported.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/unbanned": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerUnbanned.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerUnbanned",
+				"description": "The Rust server can publish to this channel when a player gets unbanned",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerUnbanned.json"
+				}
+			}
+		},
+		"v0/rust/servers/{server_id}/players/{steam_id}/events/banned": {
+			"traits": {
+				"$ref": "./components/channels/rust/ServerPlayerBanned.json"
+			},
+			"subscribe": {
+				"operationId": "ServerPlayerBanned",
+				"description": "The Rust server can publish to this channel when a player gets banned",
+				"message": {
+					"$ref": "./components/messages/rust/ServerPlayerBanned.json"
+				}
+			}
+		}
+	}
 }

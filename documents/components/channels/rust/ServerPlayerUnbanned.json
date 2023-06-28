@@ -1,6 +1,11 @@
 {
-	"name": "ServerPlayerUnbanned",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerUnbanned.json"
+	"description": "Channel for when a player is unbanned",
+	"parameters": {
+		"server_id": {
+			"$ref": "../../parameters.json#/server_id"
+		},
+		"steam_id": {
+			"$ref": "../../parameters.json#/steam_id"
+		}
 	}
 }

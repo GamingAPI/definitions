@@ -1,5 +1,5 @@
 {
-	"description": "Channel for the API to process for when a player gathers some resources",
+	"description": "Channel for when a player gathers some resources",
 	"parameters": {
 		"server_id": {
 			"$ref": "../../parameters.json#/server_id"

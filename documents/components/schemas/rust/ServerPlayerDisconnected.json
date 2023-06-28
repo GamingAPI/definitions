@@ -3,27 +3,19 @@
   "type": "object",
 	"$id": "ServerPlayerDisconnected",
   "required": [
-    "player",
-    "Reason",
-    "disconnected_timestamp"
+    "id",
+    "reason",
+    "timestamp"
   ],
   "properties": {
-    "disconnected_timestamp": {
+    "timestamp": {
       "type": "string",
-      
       "example": "2016-08-29T09:12:33.001Z"
     },
-    "player": {
-      "type": "object",
-      "$id": "ServerPlayerDisconnectedPlayer",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      }
+    "steam_id": {
+      "type": "string",
+      "description": "The player's steamID64, must be 17 chars long.",
+      "pattern": "^[0-9]{17}$"
     },
     "reason": {
       "type": "string"

@@ -1,5 +1,5 @@
 {
-	"description": "Channel for the API to process for when a player hits another player",
+	"description": "Channel for when a player hits another player",
 	"parameters": {
 		"server_id": {
 			"$ref": "../../parameters.json#/server_id"

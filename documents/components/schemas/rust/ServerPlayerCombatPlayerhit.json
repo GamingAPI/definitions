@@ -3,11 +3,11 @@
   "type": "object",
 	"$id": "ServerPlayerCombatPlayerhit",
   "required": [
-    "hit_timestamp",
+    "timestamp",
     "player_hit"
   ],
   "properties": {
-    "hit_timestamp": {
+    "timestamp": {
       "type": "string",
       "example": "2016-08-29T09:12:33.001Z"
     },

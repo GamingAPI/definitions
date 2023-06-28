@@ -6,13 +6,13 @@
     "steam_id",
     "item_uid",
     "item_id",
-    "loot_timestamp",
+    "timestamp",
     "amount",
     "container_uid",
     "container_prefab"
   ],
   "properties": {
-    "loot_timestamp": {
+    "timestamp": {
       "type": "string",
       "example": "2016-08-29T09:12:33.001Z"
     },

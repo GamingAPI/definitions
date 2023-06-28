@@ -8,12 +8,11 @@
     "item_id",
     "amount",
     "gathering_item",
-    "gathered_timestamp"
+    "timestamp"
   ],
   "properties": {
-    "gathered_timestamp": {
+    "timestamp": {
       "type": "string",
-      
       "example": "2016-08-29T09:12:33.001Z"
     },
     "steam_id": {

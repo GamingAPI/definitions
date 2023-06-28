@@ -1,5 +1,5 @@
 {
-	"description": "Channel for the API to process for when a server has stopped",
+	"description": "Channel for when a server has stopped",
 	"parameters": {
 		"server_id": {
 			"$ref": "../../parameters.json#/server_id"

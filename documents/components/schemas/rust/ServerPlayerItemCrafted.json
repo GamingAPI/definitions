@@ -6,11 +6,11 @@
     "steam_id",
     "item_uid",
     "item_id",
-    "craft_timestamp",
+    "timestamp",
     "amount"
   ],
   "properties": {
-    "craft_timestamp": {
+    "timestamp": {
       "type": "string",
       "example": "2016-08-29T09:12:33.001Z"
     },

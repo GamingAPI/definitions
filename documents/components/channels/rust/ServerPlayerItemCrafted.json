@@ -1,5 +1,5 @@
 {
-	"description": "Channel for the API to process for when a player crafts items ingame",
+	"description": "Channel for when a player crafts items ingame",
 	"parameters": {
 		"server_id": {
 			"$ref": "../../parameters.json#/server_id"

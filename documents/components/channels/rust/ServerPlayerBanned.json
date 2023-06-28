@@ -1,5 +1,5 @@
 {
-	"description": "Channel for notifying a server unbanned a player",
+	"description": "Channel for notifying a server banned a player",
 	"parameters": {
 		"server_id": {
 			"$ref": "../../parameters.json#/server_id"

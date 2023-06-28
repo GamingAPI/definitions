@@ -1,5 +1,5 @@
 {
-	"description": "Channel for the API to process for when a player is reported. The steam_id is the player that reported someone.",
+	"description": "Channel for when a player is reported. The steam_id is the player that reported someone.",
 	"parameters": {
 		"server_id": {
 			"$ref": "../../parameters.json#/server_id"

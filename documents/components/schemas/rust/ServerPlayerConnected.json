@@ -3,17 +3,27 @@
   "type": "object",
 	"$id": "ServerPlayerConnected",
   "required": [
-    "player",
-    "connected_timestamp"
+    "id",
+    "name",
+    "address",
+    "timestamp"
   ],
   "properties": {
-    "connected_timestamp": {
+    "timestamp": {
       "type": "string",
-      
       "example": "2016-08-29T09:12:33.001Z"
     },
-    "player": {
-      "$ref": "./Player.json"
+    "steam_id": {
+      "type": "string",
+      "description": "The player's steamID64, must be 17 chars long.",
+      "pattern": "^[0-9]{17}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name the player connected with, each connection can have a new name"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }

@@ -5,9 +5,9 @@
 	"required": [
 	  "steam_id",
 	  "player_name",
-	  "full_message",
+	  "message",
 	  "is_admin",
-	  "timestamp"
+    "timestamp"
 	],
 	"properties": {
     "steam_id": {
@@ -18,18 +18,11 @@
     "player_name": {
       "type": "string"
     },
-    "raw_message": {
-      "type": "string",
-      "description": "The raw message before being converted with title and rank"
-    },
-    "full_message": {
+    "message": {
       "type": "string"
     },
     "is_admin": {
       "type": "boolean"
-    },
-    "rank": {
-      "type": "integer"
     },
     "title": {
       "type": "string"
