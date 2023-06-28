@@ -1,11 +1,11 @@
 {
-	"description": "Channel for when a player hits another player",
-	"parameters": {
-		"server_id": {
-			"$ref": "../../parameters.json#/server_id"
-		},
-		"steam_id": {
-			"$ref": "../../parameters.json#/steam_id"
-		}
-	}
+  "description": "Channel for when a player hits another player",
+  "parameters": {
+    "server_id": {
+      "$ref": "../../parameters.json#/server_id"
+    },
+    "steam_id": {
+      "$ref": "../../parameters.json#/steam_id"
+    }
+  }
 }

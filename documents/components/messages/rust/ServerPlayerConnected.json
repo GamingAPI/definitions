@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerConnected",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerConnected.json"
-	}
+  "name": "ServerPlayerConnected",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerConnected.json"
+  }
 }

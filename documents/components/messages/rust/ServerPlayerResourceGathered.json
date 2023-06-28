@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerResourceGathered",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerResourceGathered.json"
-	}
+  "name": "ServerPlayerResourceGathered",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerResourceGathered.json"
+  }
 }

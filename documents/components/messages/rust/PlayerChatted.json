@@ -1,6 +1,6 @@
 {
-	"name": "PlayerChatted",
-	"payload": {
-	  "$ref": "../../schemas/rust/ChatMessage.json"
-	}
+  "name": "PlayerChatted",
+  "payload": {
+    "$ref": "../../schemas/rust/ChatMessage.json"
+  }
 }

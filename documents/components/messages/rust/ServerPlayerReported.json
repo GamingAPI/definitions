@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerReported",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerReported.json"
-	}
+  "name": "ServerPlayerReported",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerReported.json"
+  }
 }

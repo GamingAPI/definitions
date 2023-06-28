@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerItemPickup",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerItemPickup.json"
-	}
+  "name": "ServerPlayerItemPickup",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerItemPickup.json"
+  }
 }

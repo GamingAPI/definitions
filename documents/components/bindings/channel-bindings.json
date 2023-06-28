@@ -1,26 +1,26 @@
 {
 	"GeneralReplier": {
 	  "nats": {
-		"is": "requestReply",
-		"requestReply": {
-		  "is": "replier"
-		},
-		"bindingVersion": "0.1.0"
+      "is": "requestReply",
+      "requestReply": {
+        "is": "replier"
+      },
+      "bindingVersion": "0.1.0"
 	  }
 	},
 	"GeneralRequester": {
 	  "nats": {
-		"is": "requestReply",
-		"requestReply": {
-		  "is": "requester"
-		},
-		"bindingVersion": "0.1.0"
+      "is": "requestReply",
+      "requestReply": {
+        "is": "requester"
+      },
+      "bindingVersion": "0.1.0"
 	  }
 	},
 	"GeneralPubsub": {
 	  "nats": {
-		"is": "pubsub",
-		"bindingVersion": "0.1.0"
+      "is": "pubsub",
+      "bindingVersion": "0.1.0"
 	  }
 	}
-  }
+}

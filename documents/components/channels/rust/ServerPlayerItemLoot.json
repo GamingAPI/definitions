@@ -1,14 +1,14 @@
 {
-	"description": "Channel for when a player loots an item ingame",
-	"parameters": {
-		"server_id": {
-			"$ref": "../../parameters.json#/server_id"
-		},
-		"steam_id": {
-			"$ref": "../../parameters.json#/steam_id"
-		},
-		"item_id": {
-			"$ref": "../../parameters.json#/item_id"
-		}
-	}
+  "description": "Channel for when a player loots an item ingame",
+  "parameters": {
+    "server_id": {
+      "$ref": "../../parameters.json#/server_id"
+    },
+    "steam_id": {
+      "$ref": "../../parameters.json#/steam_id"
+    },
+    "item_id": {
+      "$ref": "../../parameters.json#/item_id"
+    }
+  }
 }

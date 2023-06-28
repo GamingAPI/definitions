@@ -1,8 +1,8 @@
 {
-	"description": "Channel for when a server command is run",
-	"parameters": {
-		"server_id": {
-			"$ref": "../../parameters.json#/server_id"
-		}
-	}
+  "description": "Channel for when a server command is run",
+  "parameters": {
+    "server_id": {
+      "$ref": "../../parameters.json#/server_id"
+    }
+  }
 }

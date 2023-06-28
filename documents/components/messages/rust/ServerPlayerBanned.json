@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerBanned",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerBanned.json"
-	}
+  "name": "ServerPlayerBanned",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerBanned.json"
+  }
 }

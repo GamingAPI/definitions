@@ -1,6 +1,6 @@
 {
-	"name": "BanPlayer",
-	"payload": {
-	  "type": "object"
-	}
+  "name": "BanPlayer",
+  "payload": {
+    "type": "object"
+  }
 }

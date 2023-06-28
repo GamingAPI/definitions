@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerItemCrafted",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerItemCrafted.json"
-	}
+  "name": "ServerPlayerItemCrafted",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerItemCrafted.json"
+  }
 }

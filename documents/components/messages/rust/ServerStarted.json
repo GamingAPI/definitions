@@ -1,6 +1,6 @@
 {
-	"name": "ServerStarted",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerStarted.json"
-	}
+  "name": "ServerStarted",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerStarted.json"
+  }
 }

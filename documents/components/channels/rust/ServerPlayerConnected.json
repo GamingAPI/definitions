@@ -1,11 +1,11 @@
 {
-	"description": "Channel for when a player connects to a server",
-	"parameters": {
-		"server_id": {
-			"$ref": "../../parameters.json#/server_id"
-		},
-		"steam_id": {
-			"$ref": "../../parameters.json#/steam_id"
-		}
-	}
+  "description": "Channel for when a player connects to a server",
+  "parameters": {
+    "server_id": {
+      "$ref": "../../parameters.json#/server_id"
+    },
+    "steam_id": {
+      "$ref": "../../parameters.json#/steam_id"
+    }
+  }
 }

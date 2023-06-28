@@ -1,6 +1,6 @@
 {
-	"name": "ServerPlayerCombatPlayerhit",
-	"payload": {
-	  "$ref": "../../schemas/rust/ServerPlayerCombatPlayerhit.json"
-	}
+  "name": "ServerPlayerCombatPlayerhit",
+  "payload": {
+    "$ref": "../../schemas/rust/ServerPlayerCombatPlayerhit.json"
+  }
 }

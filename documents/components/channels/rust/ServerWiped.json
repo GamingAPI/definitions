@@ -1,8 +1,8 @@
 {
-	"description": "Channel when a server has just wiped",
-	"parameters": {
-		"server_id": {
-			"$ref": "../../parameters.json#/server_id"
-		}
-	}
+  "description": "Channel when a server has just wiped",
+  "parameters": {
+    "server_id": {
+      "$ref": "../../parameters.json#/server_id"
+    }
+  }
 }

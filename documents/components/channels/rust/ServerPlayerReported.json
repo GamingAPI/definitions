@@ -1,11 +1,11 @@
 {
-	"description": "Channel for when a player is reported. The steam_id is the player that reported someone.",
-	"parameters": {
-		"server_id": {
-			"$ref": "../../parameters.json#/server_id"
-		},
-		"steam_id": {
-			"$ref": "../../parameters.json#/steam_id"
-		}
-	}
+  "description": "Channel for when a player is reported. The steam_id is the player that reported someone.",
+  "parameters": {
+    "server_id": {
+      "$ref": "../../parameters.json#/server_id"
+    },
+    "steam_id": {
+      "$ref": "../../parameters.json#/steam_id"
+    }
+  }
 }
