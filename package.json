@@ -9,12 +9,10 @@
   },
   "devDependencies": {
     "@asyncapi/bundler": "0.3.11",
-    "@stoplight/spectral-cli": "^6.3.0",
-    "octokit": "1.7.1",
-    "tweetsodium": "^0.0.6"
+    "@stoplight/spectral-cli": "^6.8.0",
+    "octokit": "1.7.1"
   },
   "dependencies": {
-    "libsodium-wrappers": "^0.7.10",
-    "sodium-native": "^3.3.0"
+    "libsodium-wrappers": "^0.7.10"
   }
 }
